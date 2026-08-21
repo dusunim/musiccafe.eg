@@ -4,6 +4,8 @@ const input = $('#fileInput');
 const playlist = $('#playlist');
 const dropZone = $('#dropZone');
 const completeBtn = $('#completeBtn');
+const prevBtn = $('#prevBtn');
+const nextBtn = $('#nextBtn');
 const STORAGE_KEY = 'music-cafe-course-state';
 
 let lessons = [];
@@ -23,6 +25,24 @@ const lessonKey = (file) => `${file.name}:${file.size}:${file.lastModified}`;
 const persist = () => localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
 const toast = (message) => { const el=$('#toast'); el.textContent=message; el.classList.add('show'); clearTimeout(toast.timer); toast.timer=setTimeout(()=>el.classList.remove('show'),2200); };
 
+async function loadManifest() {
+  try {
+    const response = await fetch('content/manifest.json', { cache: 'no-store' });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const manifest = await response.json();
+    lessons = manifest.lessons.map((item) => ({
+      ...item,
+      url: `content/videos/${item.file.split('/').map(encodeURIComponent).join('/')}`,
+    }));
+    render();
+    if (lessons.length) selectLesson(lessons[0].id);
+  } catch (error) {
+    console.warn('강의 매니페스트를 불러오지 못했습니다.', error);
+    render();
+    toast('자동 목차를 불러오지 못했습니다. 영상을 직접 선택해주세요.');
+  }
+}
+
 function addFiles(fileList) {
   const videos = [...fileList].filter(file => file.type.startsWith('video/') || /\.(mp4|webm|mov|m4v|mkv|ogv)$/i.test(file.name));
   if (!videos.length) return toast('재생 가능한 동영상 파일을 선택해주세요.');
@@ -36,7 +56,7 @@ function addFiles(fileList) {
   toast(`${videos.length}개 동영상을 불러왔습니다.`);
 }
 
-function selectLesson(id) {
+function selectLesson(id, shouldPlay = false) {
   const lesson = lessons.find(item => item.id === id);
   if (!lesson) return;
   if (activeId && Number.isFinite(player.currentTime)) {
@@ -53,7 +73,14 @@ function selectLesson(id) {
     const prior = saved[id]?.time || 0;
     if (prior < player.duration - 3) player.currentTime = prior;
     render();
+    if (shouldPlay) player.play().catch(() => {});
   }, {once:true});
+}
+
+function moveLesson(offset, shouldPlay = true) {
+  const index = lessons.findIndex((item) => item.id === activeId);
+  const target = lessons[index + offset];
+  if (target) selectLesson(target.id, shouldPlay);
 }
 
 function toggleComplete(id = activeId, force) {
@@ -62,6 +89,13 @@ function toggleComplete(id = activeId, force) {
   saved[id] = {...saved[id], time:player.currentTime || saved[id]?.time || 0, done};
   persist(); render();
   toast(done ? '수강 완료로 표시했습니다.' : '완료 표시를 취소했습니다.');
+}
+
+function completeAndContinue() {
+  if (!activeId) return;
+  const index = lessons.findIndex((item) => item.id === activeId);
+  toggleComplete(activeId, true);
+  if (lessons[index + 1]) moveLesson(1);
 }
 
 function render() {
@@ -73,15 +107,27 @@ function render() {
   $('#progressText').textContent = `${progress}%`;
   $('#progressBar').style.width = `${progress}%`;
   if (!lessons.length) return;
-  playlist.innerHTML = lessons.map((item,index)=>`
-    <button class="lesson ${item.id===activeId?'active':''} ${saved[item.id]?.done?'done':''}" data-id="${encodeURIComponent(item.id)}">
-      <span class="num">${String(index+1).padStart(2,'0')}</span>
-      <span><span class="title">${escapeHtml(item.title)}</span><span class="duration">${item.duration?formatTime(item.duration):'재생시간 확인 전'}</span></span>
-      <span class="status">${saved[item.id]?.done?'✓':''}</span>
-    </button>`).join('');
+  playlist.innerHTML = lessons.map((item,index) => {
+    const previous = lessons[index - 1];
+    const sectionChanged = item.sectionNumber && item.sectionNumber !== previous?.sectionNumber;
+    const section = sectionChanged ? `
+      <div class="section-title">
+        <span>${String(item.sectionNumber).padStart(2, '0')}</span>
+        <strong>${escapeHtml(item.sectionTitle)}</strong>
+      </div>` : '';
+    return `${section}
+      <button class="lesson ${item.id===activeId?'active':''} ${saved[item.id]?.done?'done':''}" data-id="${encodeURIComponent(item.id)}">
+        <span class="num">${String(item.number ?? index+1).padStart(2,'0')}</span>
+        <span><span class="title">${escapeHtml(item.title)}</span><span class="duration">${item.duration?formatTime(item.duration):'재생시간 확인 전'}</span></span>
+        <span class="status">${saved[item.id]?.done?'✓':''}</span>
+      </button>`;
+  }).join('');
   const done = !!saved[activeId]?.done;
+  const activeIndex = lessons.findIndex((item) => item.id === activeId);
   completeBtn.classList.toggle('done', done);
-  completeBtn.innerHTML = `<span>✓</span> ${done?'수강 완료됨':'수강 완료'}`;
+  completeBtn.innerHTML = `<span>✓</span> ${activeIndex === lessons.length - 1 ? '수강 완료' : done ? '다음 강의로' : '완료 후 다음 강의'}`;
+  prevBtn.disabled = activeIndex <= 0;
+  nextBtn.disabled = activeIndex < 0 || activeIndex >= lessons.length - 1;
 }
 
 function escapeHtml(value) { const div=document.createElement('div'); div.textContent=value; return div.innerHTML; }
@@ -89,8 +135,10 @@ function escapeHtml(value) { const div=document.createElement('div'); div.textCo
 ['#pickHero','#pickAside','#pickBottom'].forEach(id => $(id).addEventListener('click',()=>input.click()));
 input.addEventListener('change', event => { addFiles(event.target.files); input.value=''; });
 playlist.addEventListener('click', event => { const button=event.target.closest('.lesson'); if (button) selectLesson(decodeURIComponent(button.dataset.id)); });
-completeBtn.addEventListener('click',()=>toggleComplete());
-player.addEventListener('ended',()=>{ toggleComplete(activeId,true); const index=lessons.findIndex(item=>item.id===activeId); if(lessons[index+1]) selectLesson(lessons[index+1].id); });
+completeBtn.addEventListener('click', completeAndContinue);
+prevBtn.addEventListener('click', () => moveLesson(-1));
+nextBtn.addEventListener('click', () => moveLesson(1));
+player.addEventListener('ended', completeAndContinue);
 player.addEventListener('timeupdate',()=>{ if(activeId && Math.floor(player.currentTime)%5===0){ saved[activeId]={...saved[activeId],time:player.currentTime}; persist(); } });
 
 ['dragenter','dragover'].forEach(type=>dropZone.addEventListener(type,event=>{event.preventDefault();dropZone.classList.add('dragging')}));
@@ -113,3 +161,5 @@ document.addEventListener('keydown',event=>{
   if(event.key==='ArrowRight') player.currentTime=Math.min(player.duration||0,player.currentTime+10);
   if(event.key.toLowerCase()==='f' && activeId) player.requestFullscreen?.();
 });
+
+loadManifest();
