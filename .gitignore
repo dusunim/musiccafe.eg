@@ -1,0 +1,32 @@
+# Local course content
+videos/
+
+# Video files
+*.mp4
+*.m4v
+*.mov
+*.webm
+*.mkv
+*.avi
+*.wmv
+*.flv
+
+# Audio files
+*.mp3
+*.m4a
+*.aac
+*.wav
+*.flac
+*.ogg
+
+# Course documents and archives
+*.pdf
+*.zip
+*.7z
+*.rar
+
+# In-progress downloads
+*.part
+*.crdownload
+*.download
+*.temp.ts

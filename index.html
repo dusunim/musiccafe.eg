@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#111310" />
+  <title>Music Cafe — 나의 강의실</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Music Cafe 홈">
+      <span class="brand-mark"><i></i><i></i><i></i><i></i></span>
+      <span>MUSIC <b>CAFE</b></span>
+    </a>
+    <nav>
+      <a href="#course">내 강의</a>
+      <a href="#notes">노트</a>
+      <button class="profile" aria-label="프로필">MC</button>
+    </nav>
+  </header>
+
+  <main id="course">
+    <section class="course-head">
+      <a class="back" href="#">←&nbsp;&nbsp;내 강의로 돌아가기</a>
+      <div class="eyebrow">GUITAR MASTER CLASS</div>
+      <h1 id="courseTitle">일렉기타 마스터 클래스</h1>
+      <div class="course-meta">
+        <span>최준원</span><i></i><span id="lessonCount">0개 레슨</span><i></i><span id="totalDuration">00시간 00분</span>
+      </div>
+    </section>
+
+    <section class="classroom">
+      <div class="stage">
+        <div class="video-shell" id="dropZone">
+          <video id="player" controls playsinline></video>
+          <div class="empty-state" id="emptyState">
+            <div class="play-orbit"><span>▶</span></div>
+            <p class="empty-kicker">YOUR PRIVATE CLASSROOM</p>
+            <h2>수업을 시작해볼까요?</h2>
+            <p>내 컴퓨터의 강의 영상을 선택하거나<br>이곳으로 파일을 끌어다 놓으세요.</p>
+            <button class="primary" id="pickHero">동영상 불러오기 <span>＋</span></button>
+            <small>MP4 · WebM · MOV · 여러 파일 선택 가능</small>
+          </div>
+          <div class="drop-overlay">여기에 놓아 강의에 추가</div>
+        </div>
+
+        <div class="lesson-info">
+          <div>
+            <span class="now-playing">NOW PLAYING</span>
+            <h2 id="currentTitle">동영상을 선택해주세요</h2>
+          </div>
+          <button class="complete-btn" id="completeBtn" disabled><span>✓</span> 수강 완료</button>
+        </div>
+
+        <div class="tabs" id="notes">
+          <button class="active" data-tab="about">강의 소개</button>
+          <button data-tab="note">나의 노트</button>
+          <button data-tab="shortcut">단축키</button>
+        </div>
+        <div class="tab-content" id="tabContent">
+          <p>로컬에 보관한 영상을 안전하게 재생하세요. 선택한 파일은 외부 서버로 전송되지 않으며, 재생 위치와 완료 상태는 이 브라우저에 저장됩니다.</p>
+        </div>
+      </div>
+
+      <aside class="curriculum">
+        <div class="curriculum-head">
+          <div>
+            <span>CURRICULUM</span>
+            <h2>강의 목차</h2>
+          </div>
+          <button class="icon-button" id="pickAside" aria-label="동영상 추가">＋</button>
+        </div>
+        <div class="progress-copy"><span>전체 진도율</span><strong id="progressText">0%</strong></div>
+        <div class="progress-track"><div id="progressBar"></div></div>
+        <div class="playlist" id="playlist">
+          <div class="playlist-empty">
+            <span>♪</span>
+            <strong>아직 강의가 없어요</strong>
+            <p>동영상을 추가하면 파일명 순서로<br>강의 목차가 만들어집니다.</p>
+          </div>
+        </div>
+        <button class="add-bottom" id="pickBottom">＋&nbsp; 동영상 추가</button>
+      </aside>
+    </section>
+  </main>
+
+  <input id="fileInput" type="file" accept="video/*,.mkv" multiple hidden />
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
