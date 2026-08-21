@@ -10,6 +10,7 @@ const STORAGE_KEY = 'music-cafe-course-state';
 
 let lessons = [];
 let activeId = null;
+let collapsedSections = new Set();
 let saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
 
 const formatTime = (seconds) => {
@@ -37,6 +38,7 @@ async function loadManifest() {
       ...item,
       url: `content/videos/${item.file.split('/').map(encodeURIComponent).join('/')}`,
     }));
+    collapsedSections = new Set(manifest.sections.map((section) => section.number));
     render();
     if (lessons.length) selectLesson(lessons[0].id);
   } catch (error) {
@@ -66,6 +68,7 @@ function selectLesson(id, shouldPlay = false) {
     saved[activeId] = {...saved[activeId], time:player.currentTime}; persist();
   }
   activeId = id;
+  if (lesson.sectionNumber) collapsedSections.delete(lesson.sectionNumber);
   player.src = lesson.url;
   dropZone.classList.add('has-video');
   $('#currentTitle').textContent = lesson.title;
@@ -108,21 +111,34 @@ function render() {
   $('#progressText').textContent = `${progress}%`;
   $('#progressBar').style.width = `${progress}%`;
   if (!lessons.length) return;
-  playlist.innerHTML = lessons.map((item,index) => {
+  let playlistHtml = '';
+  let openSection = null;
+  lessons.forEach((item,index) => {
     const previous = lessons[index - 1];
     const sectionChanged = item.sectionNumber && item.sectionNumber !== previous?.sectionNumber;
-    const section = sectionChanged ? `
-      <div class="section-title">
-        <span>${String(item.sectionNumber).padStart(2, '0')}</span>
-        <strong>${escapeHtml(item.sectionTitle)}</strong>
-      </div>` : '';
-    return `${section}
+    if (sectionChanged) {
+      if (openSection !== null) playlistHtml += '</div></section>';
+      openSection = item.sectionNumber;
+      const isCurrent = item.sectionNumber === lessons.find((lesson) => lesson.id === activeId)?.sectionNumber;
+      const isCollapsed = !isCurrent && collapsedSections.has(item.sectionNumber);
+      playlistHtml += `
+        <section class="curriculum-section ${isCurrent ? 'current' : ''}">
+          <button class="section-toggle" data-section="${item.sectionNumber}" aria-expanded="${!isCollapsed}">
+            <span class="section-number">${String(item.sectionNumber).padStart(2, '0')}</span>
+            <strong>${escapeHtml(item.sectionTitle)}</strong>
+            <span class="section-chevron" aria-hidden="true">⌄</span>
+          </button>
+          <div class="section-lessons" ${isCollapsed ? 'hidden' : ''}>`;
+    }
+    playlistHtml += `
       <button class="lesson ${item.id===activeId?'active':''} ${saved[item.id]?.done?'done':''}" data-id="${encodeURIComponent(item.id)}">
         <span class="num">${String(item.number ?? index+1).padStart(2,'0')}</span>
         <span><span class="title">${escapeHtml(item.title)}</span><span class="duration">${item.duration?formatTime(item.duration):'재생시간 확인 전'}</span></span>
         <span class="status">${saved[item.id]?.done?'✓':''}</span>
       </button>`;
-  }).join('');
+  });
+  if (openSection !== null) playlistHtml += '</div></section>';
+  playlist.innerHTML = playlistHtml;
   const done = !!saved[activeId]?.done;
   const activeIndex = lessons.findIndex((item) => item.id === activeId);
   completeBtn.classList.toggle('done', done);
@@ -161,7 +177,19 @@ function renderAboutIfActive() {
 
 ['#pickHero','#pickAside','#pickBottom'].forEach(id => $(id).addEventListener('click',()=>input.click()));
 input.addEventListener('change', event => { addFiles(event.target.files); input.value=''; });
-playlist.addEventListener('click', event => { const button=event.target.closest('.lesson'); if (button) selectLesson(decodeURIComponent(button.dataset.id)); });
+playlist.addEventListener('click', event => {
+  const sectionButton = event.target.closest('.section-toggle');
+  if (sectionButton) {
+    const sectionNumber = Number(sectionButton.dataset.section);
+    const activeSection = lessons.find((lesson) => lesson.id === activeId)?.sectionNumber;
+    if (sectionNumber === activeSection) return toast('현재 재생 중인 섹션은 항상 펼쳐져 있습니다.');
+    collapsedSections.has(sectionNumber) ? collapsedSections.delete(sectionNumber) : collapsedSections.add(sectionNumber);
+    render();
+    return;
+  }
+  const lessonButton = event.target.closest('.lesson');
+  if (lessonButton) selectLesson(decodeURIComponent(lessonButton.dataset.id));
+});
 completeBtn.addEventListener('click', completeAndContinue);
 prevBtn.addEventListener('click', () => moveLesson(-1));
 nextBtn.addEventListener('click', () => moveLesson(1));
