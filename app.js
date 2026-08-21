@@ -71,6 +71,7 @@ function selectLesson(id, shouldPlay = false) {
   $('#currentTitle').textContent = lesson.title;
   completeBtn.disabled = false;
   render();
+  renderAboutIfActive();
   player.addEventListener('loadedmetadata', function restore() {
     lesson.duration = player.duration;
     const prior = saved[id]?.time || 0;
@@ -132,6 +133,32 @@ function render() {
 
 function escapeHtml(value) { const div=document.createElement('div'); div.textContent=value; return div.innerHTML; }
 
+function renderAbout() {
+  const lesson = lessons.find((item) => item.id === activeId);
+  const content = $('#tabContent');
+  if (!lesson?.summary) {
+    content.innerHTML = '<p>이 강의의 요약을 준비하고 있습니다. 영상은 외부 서버로 전송되지 않으며, 재생 위치와 완료 상태는 이 브라우저에 저장됩니다.</p>';
+    return;
+  }
+  const summary = lesson.summary;
+  content.innerHTML = `
+    <div class="lesson-summary">
+      <p class="summary-overview">${escapeHtml(summary.overview)}</p>
+      <h3>핵심 내용</h3>
+      <ul>${summary.keyPoints.map((point) => `<li>${escapeHtml(point)}</li>`).join('')}</ul>
+      <h3>연습 포인트</h3>
+      <ul>${summary.practiceTips.map((tip) => `<li>${escapeHtml(tip)}</li>`).join('')}</ul>
+      <h3>타임라인</h3>
+      <div class="summary-timeline">${summary.timeline.map((item) => `
+        <button data-time="${item.time}"><span>${formatTime(item.time)}</span>${escapeHtml(item.label)}</button>`).join('')}
+      </div>
+    </div>`;
+}
+
+function renderAboutIfActive() {
+  if ($('.tabs button.active')?.dataset.tab === 'about') renderAbout();
+}
+
 ['#pickHero','#pickAside','#pickBottom'].forEach(id => $(id).addEventListener('click',()=>input.click()));
 input.addEventListener('change', event => { addFiles(event.target.files); input.value=''; });
 playlist.addEventListener('click', event => { const button=event.target.closest('.lesson'); if (button) selectLesson(decodeURIComponent(button.dataset.id)); });
@@ -149,9 +176,16 @@ $('.tabs').addEventListener('click',event=>{
   const button=event.target.closest('button'); if(!button)return;
   document.querySelectorAll('.tabs button').forEach(el=>el.classList.toggle('active',el===button));
   const content=$('#tabContent');
-  if(button.dataset.tab==='about') content.innerHTML='<p>로컬에 보관한 영상을 안전하게 재생하세요. 선택한 파일은 외부 서버로 전송되지 않으며, 재생 위치와 완료 상태는 이 브라우저에 저장됩니다.</p>';
+  if(button.dataset.tab==='about') renderAbout();
   if(button.dataset.tab==='note') { content.innerHTML=`<textarea placeholder="이번 레슨에서 기억할 내용을 적어보세요.">${saved.note||''}</textarea>`; content.querySelector('textarea').addEventListener('input',e=>{saved.note=e.target.value;persist()}); }
   if(button.dataset.tab==='shortcut') content.innerHTML='<div class="shortcut-grid"><div><span>재생 / 일시정지</span><kbd>Space</kbd></div><div><span>10초 뒤로</span><kbd>←</kbd></div><div><span>10초 앞으로</span><kbd>→</kbd></div><div><span>전체 화면</span><kbd>F</kbd></div></div>';
+});
+
+$('#tabContent').addEventListener('click', (event) => {
+  const button = event.target.closest('[data-time]');
+  if (!button || !activeId) return;
+  player.currentTime = Number(button.dataset.time);
+  player.play().catch(() => {});
 });
 
 document.addEventListener('keydown',event=>{
