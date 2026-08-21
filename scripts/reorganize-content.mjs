@@ -40,7 +40,8 @@ for (const section of sections) {
     if (!entry) throw new Error(`Missing source video ${globalNumber}.`);
 
     const localNumber = section.number === 1 ? globalNumber - 1 : globalNumber - section.range[0] + 1;
-    const targetName = `${pad(localNumber)}-${section.slug}.mp4`;
+    const fileOrder = globalNumber - section.range[0] + 1;
+    const targetName = `${pad(fileOrder)}-${section.slug}.mp4`;
     const sourcePath = path.join(videoRoot, entry.name);
     const targetPath = path.join(targetDirectory, targetName);
     const durationMatch = entry.name.match(/\((\d{1,2})_(\d{2})\)\.mp4$/i);

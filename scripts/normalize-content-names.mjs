@@ -7,15 +7,22 @@ const courseFile = path.join(root, 'content', 'course.json');
 const course = JSON.parse(await readFile(courseFile, 'utf8'));
 
 for (const section of course.sections) {
-  for (const lesson of section.lessons) {
+  const pending = [];
+  for (const [index, lesson] of section.lessons.entries()) {
     const parts = lesson.file.split('/');
     const oldName = parts.pop();
-    const newName = oldName.replace(/^\d+-/, `${String(lesson.number).padStart(2, '0')}-`);
+    const newName = oldName.replace(/^\d+-/, `${String(index + 1).padStart(2, '0')}-`);
     if (oldName === newName) continue;
 
     const directory = path.join(videoRoot, ...parts);
-    await rename(path.join(directory, oldName), path.join(directory, newName));
-    lesson.file = [...parts, newName].join('/');
+    const temporaryName = `${oldName}.renaming`;
+    await rename(path.join(directory, oldName), path.join(directory, temporaryName));
+    pending.push({ lesson, parts, directory, temporaryName, newName });
+  }
+
+  for (const item of pending) {
+    await rename(path.join(item.directory, item.temporaryName), path.join(item.directory, item.newName));
+    item.lesson.file = [...item.parts, item.newName].join('/');
   }
 }
 
