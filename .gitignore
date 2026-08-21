@@ -1,5 +1,7 @@
 # Local course content
 content/videos/
+content/transcripts/
+content/transcripts.js
 
 # Video files
 *.mp4
@@ -30,3 +32,5 @@ content/videos/
 *.crdownload
 *.download
 *.temp.ts
+__pycache__/
+*.pyc

@@ -36,6 +36,7 @@ async function loadManifest() {
     }
     lessons = manifest.lessons.map((item) => ({
       ...item,
+      transcript: window.COURSE_TRANSCRIPTS?.[item.id],
       url: `content/videos/${item.file.split('/').map(encodeURIComponent).join('/')}`,
     }));
     collapsedSections = new Set(manifest.sections.map((section) => section.number));
@@ -74,7 +75,7 @@ function selectLesson(id, shouldPlay = false) {
   $('#currentTitle').textContent = lesson.title;
   completeBtn.disabled = false;
   render();
-  renderAboutIfActive();
+  renderActiveTab();
   player.addEventListener('loadedmetadata', function restore() {
     lesson.duration = player.duration;
     const prior = saved[id]?.time || 0;
@@ -171,12 +172,44 @@ function renderAbout() {
     </div>`;
 }
 
-function renderAboutIfActive() {
-  if ($('.tabs button.active')?.dataset.tab === 'about') renderAbout();
+function renderActiveTab() {
+  const activeTab = $('.tabs button.active')?.dataset.tab;
+  if (activeTab === 'about') renderAbout();
+  if (activeTab === 'transcript') renderTranscript();
 }
 
-['#pickHero','#pickAside','#pickBottom'].forEach(id => $(id).addEventListener('click',()=>input.click()));
+function renderTranscript() {
+  const lesson = lessons.find((item) => item.id === activeId);
+  const content = $('#tabContent');
+  if (!lesson?.transcript?.length) {
+    content.innerHTML = '<p>이 강의의 전체 스크립트를 준비하고 있습니다.</p>';
+    return;
+  }
+  content.innerHTML = `
+    <div class="transcript-head">
+      <strong>전체 스크립트</strong>
+      <span>${lesson.transcript.length}개 음성 구간</span>
+    </div>
+    <div class="transcript-list">${lesson.transcript.map((segment) => `
+      <button data-time="${segment.start}">
+        <time>${formatTime(segment.start)}</time>
+        <span>${escapeHtml(segment.text)}</span>
+      </button>`).join('')}
+    </div>`;
+}
+
+['#pickHero','#pickBottom'].forEach(id => $(id).addEventListener('click',()=>input.click()));
 input.addEventListener('change', event => { addFiles(event.target.files); input.value=''; });
+$('#expandAll').addEventListener('click', () => {
+  collapsedSections.clear();
+  render();
+});
+$('#collapseAll').addEventListener('click', () => {
+  collapsedSections = new Set(lessons.map((lesson) => lesson.sectionNumber).filter(Boolean));
+  const activeSection = lessons.find((lesson) => lesson.id === activeId)?.sectionNumber;
+  if (activeSection) collapsedSections.delete(activeSection);
+  render();
+});
 playlist.addEventListener('click', event => {
   const sectionButton = event.target.closest('.section-toggle');
   if (sectionButton) {
@@ -205,6 +238,7 @@ $('.tabs').addEventListener('click',event=>{
   document.querySelectorAll('.tabs button').forEach(el=>el.classList.toggle('active',el===button));
   const content=$('#tabContent');
   if(button.dataset.tab==='about') renderAbout();
+  if(button.dataset.tab==='transcript') renderTranscript();
   if(button.dataset.tab==='note') { content.innerHTML=`<textarea placeholder="이번 레슨에서 기억할 내용을 적어보세요.">${saved.note||''}</textarea>`; content.querySelector('textarea').addEventListener('input',e=>{saved.note=e.target.value;persist()}); }
   if(button.dataset.tab==='shortcut') content.innerHTML='<div class="shortcut-grid"><div><span>재생 / 일시정지</span><kbd>Space</kbd></div><div><span>10초 뒤로</span><kbd>←</kbd></div><div><span>10초 앞으로</span><kbd>→</kbd></div><div><span>전체 화면</span><kbd>F</kbd></div></div>';
 });

@@ -36,3 +36,13 @@ python scripts/transcribe_video.py `
 ```
 
 요약 파일은 같은 상대 경로의 `content/summaries` 아래에 JSON으로 저장합니다. `node scripts/generate-manifest.mjs`를 실행하면 요약이 강의 소개 탭에 포함됩니다.
+
+전체 강의를 한 번에 전사하고 요약하려면 다음 순서로 실행합니다. NVIDIA CUDA 환경에서는 `--device cuda`를 추가할 수 있습니다.
+
+```powershell
+python scripts/transcribe_course.py --model small
+python scripts/generate_summaries.py
+node scripts/generate-manifest.mjs
+```
+
+전체 전사 원문과 로컬 실행용 `content/transcripts.js`는 강의 콘텐츠 보호를 위해 Git에서 제외됩니다.

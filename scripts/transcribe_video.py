@@ -15,10 +15,13 @@ parser = argparse.ArgumentParser(description="Transcribe one course video with W
 parser.add_argument("video", type=Path)
 parser.add_argument("output", type=Path, help="Output path without an extension")
 parser.add_argument("--model", default="small")
+parser.add_argument("--device", choices=("cpu", "cuda"), default="cpu")
+parser.add_argument("--compute-type", default=None)
 args = parser.parse_args()
 
 args.output.parent.mkdir(parents=True, exist_ok=True)
-model = WhisperModel(args.model, device="cpu", compute_type="int8")
+compute_type = args.compute_type or ("float16" if args.device == "cuda" else "int8")
+model = WhisperModel(args.model, device=args.device, compute_type=compute_type)
 segments, info = model.transcribe(
     str(args.video),
     language="ko",

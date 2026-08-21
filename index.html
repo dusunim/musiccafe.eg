@@ -41,6 +41,7 @@
 
         <div class="tabs" id="notes">
           <button class="active" data-tab="about">강의 소개</button>
+          <button data-tab="transcript">전체 스크립트</button>
           <button data-tab="note">나의 노트</button>
           <button data-tab="shortcut">단축키</button>
         </div>
@@ -55,7 +56,10 @@
             <span>CURRICULUM</span>
             <h2>강의 목차</h2>
           </div>
-          <button class="icon-button" id="pickAside" aria-label="동영상 추가">＋</button>
+          <div class="curriculum-tools">
+            <button id="expandAll">모두 펼치기</button>
+            <button id="collapseAll">모두 접기</button>
+          </div>
         </div>
         <div class="progress-copy"><span>전체 진도율</span><strong id="progressText">0%</strong></div>
         <div class="progress-track"><div id="progressBar"></div></div>
@@ -74,6 +78,7 @@
   <input id="fileInput" type="file" accept="video/*,.mkv" multiple hidden />
   <div class="toast" id="toast" role="status"></div>
   <script src="content/manifest.js"></script>
+  <script src="content/transcripts.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
