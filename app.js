@@ -99,9 +99,6 @@ function completeAndContinue() {
 }
 
 function render() {
-  $('#lessonCount').textContent = `${lessons.length}개 레슨`;
-  const seconds = lessons.reduce((sum,item)=>sum+(item.duration||0),0);
-  $('#totalDuration').textContent = seconds ? `${Math.floor(seconds/3600)}시간 ${Math.floor(seconds%3600/60)}분` : '총 재생시간 —';
   const doneCount = lessons.filter(item => saved[item.id]?.done).length;
   const progress = lessons.length ? Math.round(doneCount / lessons.length * 100) : 0;
   $('#progressText').textContent = `${progress}%`;
