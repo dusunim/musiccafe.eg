@@ -4,6 +4,14 @@ from pathlib import Path
 
 from faster_whisper import WhisperModel
 
+CORRECTIONS = {"좁쌤": "조필성"}
+
+
+def correct_text(text: str) -> str:
+    for source, target in CORRECTIONS.items():
+        text = text.replace(source, target)
+    return text
+
 
 def timestamp(seconds: float) -> str:
     minutes, seconds = divmod(int(seconds), 60)
@@ -32,7 +40,7 @@ segments, info = model.transcribe(
 
 items = []
 for segment in segments:
-    text = segment.text.strip()
+    text = correct_text(segment.text.strip())
     if text:
         items.append({"start": round(segment.start, 2), "end": round(segment.end, 2), "text": text})
         print(f"[{timestamp(segment.start)}] {text}", flush=True)
