@@ -1,0 +1,999 @@
+window.COURSE_MANIFEST = {
+  "title": "조필성 얼티밋 기타 마스터 클래스 1편",
+  "sections": [
+    {
+      "number": 1,
+      "slug": "picking-fingering-chromatic",
+      "title": "피킹, 왼손 핑거링, 그리고 크로매틱 어떻게 해야할까?",
+      "lessons": [
+        {
+          "number": 0,
+          "title": "0) 강의 소개",
+          "file": "1-picking-fingering-chromatic/01-picking-fingering-chromatic.mp4",
+          "duration": 0
+        },
+        {
+          "number": 1,
+          "title": "1) 기본중의 기본! 피킹의 정석과 벨로시티 연습의 중요성",
+          "file": "1-picking-fingering-chromatic/02-picking-fingering-chromatic.mp4",
+          "duration": 551
+        },
+        {
+          "number": 2,
+          "title": "2) 대부분의 사람들이 크로매틱을 잘못하고 있다! 크로매틱의 정석에 대해 알아보자",
+          "file": "1-picking-fingering-chromatic/03-picking-fingering-chromatic.mp4",
+          "duration": 856
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "slug": "speed-chromatic-basics",
+      "title": "속주를 위한 정석 크로매틱의 기본을 배워보자",
+      "lessons": [
+        {
+          "number": 1,
+          "title": "1) 1번 손가락부터 시작하는 크로매틱을 마스터하자",
+          "file": "2-speed-chromatic-basics/01-speed-chromatic-basics.mp4",
+          "duration": 212
+        },
+        {
+          "number": 2,
+          "title": "2) 2번 손가락부터 시작하는 크로매틱을 마스터하자",
+          "file": "2-speed-chromatic-basics/02-speed-chromatic-basics.mp4",
+          "duration": 166
+        },
+        {
+          "number": 3,
+          "title": "3) 3번 손가락부터 시작하는 크로매틱을 마스터하자",
+          "file": "2-speed-chromatic-basics/03-speed-chromatic-basics.mp4",
+          "duration": 116
+        },
+        {
+          "number": 4,
+          "title": "4) 4번 손가락부터 시작하는 크로매틱을 마스터하자",
+          "file": "2-speed-chromatic-basics/04-speed-chromatic-basics.mp4",
+          "duration": 142
+        },
+        {
+          "number": 5,
+          "title": "5) 무조건 알고가야하는 3연음! 3연음을 익혀보자",
+          "file": "2-speed-chromatic-basics/05-speed-chromatic-basics.mp4",
+          "duration": 266
+        },
+        {
+          "number": 6,
+          "title": "6) 4연음과 3연음을 컨버팅하면서 연습해보자",
+          "file": "2-speed-chromatic-basics/06-speed-chromatic-basics.mp4",
+          "duration": 238
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "slug": "chromatic-finger-independence",
+      "title": "크로매틱 마스터하기 - 손가락 인디펜던스의 시작",
+      "lessons": [
+        {
+          "number": 1,
+          "title": "1) 첫 번째 크로매틱 베리에이션, 4연음과 3연음을 컨버팅하면서 익혀보자",
+          "file": "3-chromatic-finger-independence/01-chromatic-finger-independence.mp4",
+          "duration": 605
+        },
+        {
+          "number": 2,
+          "title": "2) 두 번째 크로매틱 베리에이션",
+          "file": "3-chromatic-finger-independence/02-chromatic-finger-independence.mp4",
+          "duration": 228
+        },
+        {
+          "number": 3,
+          "title": "3) 세 번째 크로매틱 베리에이션 & 크로매틱 연습과 실전용 꿀팁",
+          "file": "3-chromatic-finger-independence/03-chromatic-finger-independence.mp4",
+          "duration": 449
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "slug": "c-major-scale-fundamentals",
+      "title": "모든 KEY의 기본, C 메이저 스케일 완전정복",
+      "lessons": [
+        {
+          "number": 1,
+          "title": "1) 집 블록과 별장 블록? 그리고 어떻게 연습을 해야할까?",
+          "file": "4-c-major-scale-fundamentals/01-c-major-scale-fundamentals.mp4",
+          "duration": 561
+        },
+        {
+          "number": 2,
+          "title": "2) 지하실 블록, 옥상 계단 블록 (집 블록을 기준으로)",
+          "file": "4-c-major-scale-fundamentals/02-c-major-scale-fundamentals.mp4",
+          "duration": 201
+        },
+        {
+          "number": 3,
+          "title": "3) 별장 지하실 블록, 별장 옥상 블록 (별장 블록을 기준으로)",
+          "file": "4-c-major-scale-fundamentals/03-c-major-scale-fundamentals.mp4",
+          "duration": 238
+        },
+        {
+          "number": 4,
+          "title": "4) 집과 별장을 이어주는 고속도로 블록, 그리고 집과 별장의 확장 블록",
+          "file": "4-c-major-scale-fundamentals/04-c-major-scale-fundamentals.mp4",
+          "duration": 199
+        },
+        {
+          "number": 5,
+          "title": "5) 스케일 가지고 놀기 & 다른 키로 스케일을 외우는 꿀팁!",
+          "file": "4-c-major-scale-fundamentals/05-c-major-scale-fundamentals.mp4",
+          "duration": 903
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "slug": "c-major-scale-variation",
+      "title": "C 메이저 스케일 활용 - 크로매틱에 적용해보자",
+      "lessons": [
+        {
+          "number": 1,
+          "title": "1) C 메이저 스케일에 크로매틱 베리에이션 적용시켜보기",
+          "file": "5-c-major-scale-variation/01-c-major-scale-variation.mp4",
+          "duration": 598
+        },
+        {
+          "number": 2,
+          "title": "2) C 메이저 스케일을 폴리 리듬으로 연습해보기",
+          "file": "5-c-major-scale-variation/02-c-major-scale-variation.mp4",
+          "duration": 505
+        },
+        {
+          "number": 3,
+          "title": "3) C 메이저 스케일을 2 스트링 콤비네이션으로 연습해보기",
+          "file": "5-c-major-scale-variation/03-c-major-scale-variation.mp4",
+          "duration": 256
+        },
+        {
+          "number": 4,
+          "title": "4) C 메이저 스케일을 패닝으로 연습해보기 & 실전 활용 방법 및 꿀팁!",
+          "file": "5-c-major-scale-variation/04-c-major-scale-variation.mp4",
+          "duration": 574
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "slug": "pentatonic-scale",
+      "title": "펜타토닉 스케일 - 모든 연주의 시작과 끝",
+      "lessons": [
+        {
+          "number": 1,
+          "title": "1) 펜타토닉 스케일과 스케일 블록에 대해서 알아보자",
+          "file": "6-pentatonic-scale/01-pentatonic-scale.mp4",
+          "duration": 759
+        },
+        {
+          "number": 2,
+          "title": "2) 왼손과 오른손을 컨펌 시키는 연습",
+          "file": "6-pentatonic-scale/02-pentatonic-scale.mp4",
+          "duration": 504
+        },
+        {
+          "number": 3,
+          "title": "3) 펜타토닉의 시각에서 C 메이저 스케일을 바라보기",
+          "file": "6-pentatonic-scale/03-pentatonic-scale.mp4",
+          "duration": 383
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "slug": "bending-points",
+      "title": "벤딩 포인트 마스터",
+      "lessons": [
+        {
+          "number": 1,
+          "title": "1) 벤딩 포인트 첫 번째 공략 방법 - 7도",
+          "file": "7-bending-points/01-bending-points.mp4",
+          "duration": 628
+        },
+        {
+          "number": 2,
+          "title": "2) 벤딩 포인트 두 번째 공략 방법 - 4도",
+          "file": "7-bending-points/02-bending-points.mp4",
+          "duration": 397
+        },
+        {
+          "number": 3,
+          "title": "3) 벤딩 포인트 세 번째 공략 방법 - 6도",
+          "file": "7-bending-points/03-bending-points.mp4",
+          "duration": 324
+        },
+        {
+          "number": 4,
+          "title": "4) 벤딩 포인트 네 번째 공략 방법 - 5, 2도",
+          "file": "7-bending-points/04-bending-points.mp4",
+          "duration": 724
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "slug": "slide-points",
+      "title": "슬라이드 포인트 마스터",
+      "lessons": [
+        {
+          "number": 1,
+          "title": "1) 슬라이드 포인트에 대해서 알아보자",
+          "file": "8-slide-points/01-slide-points.mp4",
+          "duration": 757
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "slug": "essential-techniques",
+      "title": "필수 기본 테크닉 - 한 번 배운다고 다 아는 것이 아니다",
+      "lessons": [
+        {
+          "number": 1,
+          "title": "1) 필수 기본 테크닉! 해머링, 풀링 오프, 슬라이드에 대해 알아보자",
+          "file": "9-essential-techniques/01-essential-techniques.mp4",
+          "duration": 446
+        },
+        {
+          "number": 2,
+          "title": "2) 해머링 & 풀링 오프를 같이 쓰면서 익힐 수 있는 테크닉!",
+          "file": "9-essential-techniques/02-essential-techniques.mp4",
+          "duration": 558
+        },
+        {
+          "number": 3,
+          "title": "3) 슬라이드를 이용한 테크닉, 그리고 슬라이드 & 해머링을 이용한 테크닉!",
+          "file": "9-essential-techniques/03-essential-techniques.mp4",
+          "duration": 449
+        },
+        {
+          "number": 4,
+          "title": "4) 슬라이드 콤비네이션을 이용한 테크닉, 그리고 총정리",
+          "file": "9-essential-techniques/04-essential-techniques.mp4",
+          "duration": 761
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "slug": "easy-penta-40-licks",
+      "title": "필수 펜타토닉 릭 40가지 (Easy Penta)",
+      "lessons": [
+        {
+          "number": 1,
+          "title": "1) 1-4번? 롤링이 포인트가 되는 메인 릭, 그리고 메인 릭을 확장시켜보기",
+          "file": "10-easy-penta-40-licks/01-easy-penta-40-licks.mp4",
+          "duration": 906
+        },
+        {
+          "number": 2,
+          "title": "2) 5-6번? 풀링이 포인트가 되는 릭",
+          "file": "10-easy-penta-40-licks/02-easy-penta-40-licks.mp4",
+          "duration": 667
+        },
+        {
+          "number": 3,
+          "title": "3) 7-8번? 아웃사이드 피킹, 정박과 엇박의 차이를 느낄 수 있는 릭",
+          "file": "10-easy-penta-40-licks/03-easy-penta-40-licks.mp4",
+          "duration": 366
+        },
+        {
+          "number": 4,
+          "title": "4) 9-10번? 연속적으로 풀링이 나오는 상황에서의 릭",
+          "file": "10-easy-penta-40-licks/04-easy-penta-40-licks.mp4",
+          "duration": 409
+        },
+        {
+          "number": 5,
+          "title": "5) 11번? 슬라이드 포인트를 활용한 릭",
+          "file": "10-easy-penta-40-licks/05-easy-penta-40-licks.mp4",
+          "duration": 154
+        },
+        {
+          "number": 6,
+          "title": "6) 12번? 벤딩 비브라토를 활용한 릭",
+          "file": "10-easy-penta-40-licks/06-easy-penta-40-licks.mp4",
+          "duration": 345
+        },
+        {
+          "number": 7,
+          "title": "7) 13번? Rake 주법을 활용한 릭",
+          "file": "10-easy-penta-40-licks/07-easy-penta-40-licks.mp4",
+          "duration": 539
+        },
+        {
+          "number": 8,
+          "title": "8) 14번? 벤딩, 해머링 활용하고 필수 기본 테크닉을 변형한 릭",
+          "file": "10-easy-penta-40-licks/08-easy-penta-40-licks.mp4",
+          "duration": 228
+        },
+        {
+          "number": 9,
+          "title": "9) 15번? 벤딩 비브라토를 활용한 릭 (2)",
+          "file": "10-easy-penta-40-licks/09-easy-penta-40-licks.mp4",
+          "duration": 234
+        },
+        {
+          "number": 10,
+          "title": "10) 16번? 하이브리드 피킹의 기본을 다질 수 있는 릭",
+          "file": "10-easy-penta-40-licks/10-easy-penta-40-licks.mp4",
+          "duration": 635
+        },
+        {
+          "number": 11,
+          "title": "11) 17번? 홀딩과 그리드의 조합!",
+          "file": "10-easy-penta-40-licks/11-easy-penta-40-licks.mp4",
+          "duration": 391
+        },
+        {
+          "number": 12,
+          "title": "12) 18-20번? Down, Up, Up 피킹이 되는 상황에서의 릭",
+          "file": "10-easy-penta-40-licks/12-easy-penta-40-licks.mp4",
+          "duration": 661
+        },
+        {
+          "number": 13,
+          "title": "13) 21-23번? 스피드가 생명! 스피드가 붙으면 더 멋스러워지는 릭",
+          "file": "10-easy-penta-40-licks/13-easy-penta-40-licks.mp4",
+          "duration": 750
+        },
+        {
+          "number": 14,
+          "title": "14) 24번? 홈 블럭이 메인이 되는 릭",
+          "file": "10-easy-penta-40-licks/14-easy-penta-40-licks.mp4",
+          "duration": 443
+        },
+        {
+          "number": 15,
+          "title": "15) 25번? 반복되는 패턴을 활용한 릭",
+          "file": "10-easy-penta-40-licks/15-easy-penta-40-licks.mp4",
+          "duration": 294
+        },
+        {
+          "number": 16,
+          "title": "16) 26-27번? 펜타토닉에서 슬라이드를 활용하는 상황, 그리고 심화 버전",
+          "file": "10-easy-penta-40-licks/16-easy-penta-40-licks.mp4",
+          "duration": 496
+        },
+        {
+          "number": 17,
+          "title": "17) 28번? 폴리 리듬을 활용한 릭",
+          "file": "10-easy-penta-40-licks/17-easy-penta-40-licks.mp4",
+          "duration": 223
+        },
+        {
+          "number": 18,
+          "title": "18) 29번? 스트링 스키핑 - 하이브리드 피킹을 활용할 수 있는 릭",
+          "file": "10-easy-penta-40-licks/18-easy-penta-40-licks.mp4",
+          "duration": 272
+        },
+        {
+          "number": 19,
+          "title": "19) 30번? 펜타토닉에 슬라이드를 이용하여 색감을 입힐 수 있는 릭 & 스타카토 꿀팁!",
+          "file": "10-easy-penta-40-licks/19-easy-penta-40-licks.mp4",
+          "duration": 560
+        },
+        {
+          "number": 20,
+          "title": "20) 31번? 하프 벤딩, 그리고 하프 벤딩 비브라토가 나오는 상황",
+          "file": "10-easy-penta-40-licks/20-easy-penta-40-licks.mp4",
+          "duration": 228
+        },
+        {
+          "number": 21,
+          "title": "21) 32-35번? 계속 반복하면서 연주에 활용할 수 있는 릭",
+          "file": "10-easy-penta-40-licks/21-easy-penta-40-licks.mp4",
+          "duration": 1275
+        },
+        {
+          "number": 22,
+          "title": "22) 36-37번? 배웠던 릭들을 혼합해서 활용해보기",
+          "file": "10-easy-penta-40-licks/22-easy-penta-40-licks.mp4",
+          "duration": 663
+        },
+        {
+          "number": 23,
+          "title": "23) 38-39번? 하이브리드 피킹을 활용한 릭 (1), 그리고 리듬의 변화",
+          "file": "10-easy-penta-40-licks/23-easy-penta-40-licks.mp4",
+          "duration": 668
+        },
+        {
+          "number": 24,
+          "title": "24) 40번? 하이브리드 피킹을 활용한 릭 (2), 그리고 리듬의 변화",
+          "file": "10-easy-penta-40-licks/24-easy-penta-40-licks.mp4",
+          "duration": 615
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "slug": "chapter-compilation",
+      "title": "챕터 별로 한 번에 몰아보기",
+      "lessons": [
+        {
+          "number": 1,
+          "title": "1) 피킹, 왼손 핑거링, 그리고 크로매틱 어떻게 해야할까? - 한 번에 몰아보기",
+          "file": "11-chapter-compilation/01-chapter-compilation.mp4",
+          "duration": 1408
+        },
+        {
+          "number": 2,
+          "title": "2) 속주를 위한 정석 크로매틱의 기본을 배워보자",
+          "file": "11-chapter-compilation/02-chapter-compilation.mp4",
+          "duration": 1141
+        },
+        {
+          "number": 3,
+          "title": "3) 크로매틱 마스터하기 - 손가락 인디펜던스의 시작",
+          "file": "11-chapter-compilation/03-chapter-compilation.mp4",
+          "duration": 1283
+        },
+        {
+          "number": 4,
+          "title": "4) 모든 KEY의 기본, C 메이저 스케일 완전정복",
+          "file": "11-chapter-compilation/04-chapter-compilation.mp4",
+          "duration": 2103
+        }
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "number": 0,
+      "title": "0) 강의 소개",
+      "file": "1-picking-fingering-chromatic/01-picking-fingering-chromatic.mp4",
+      "duration": 0,
+      "id": "section-1-lesson-0",
+      "sectionNumber": 1,
+      "sectionTitle": "피킹, 왼손 핑거링, 그리고 크로매틱 어떻게 해야할까?"
+    },
+    {
+      "number": 1,
+      "title": "1) 기본중의 기본! 피킹의 정석과 벨로시티 연습의 중요성",
+      "file": "1-picking-fingering-chromatic/02-picking-fingering-chromatic.mp4",
+      "duration": 551,
+      "id": "section-1-lesson-1",
+      "sectionNumber": 1,
+      "sectionTitle": "피킹, 왼손 핑거링, 그리고 크로매틱 어떻게 해야할까?"
+    },
+    {
+      "number": 2,
+      "title": "2) 대부분의 사람들이 크로매틱을 잘못하고 있다! 크로매틱의 정석에 대해 알아보자",
+      "file": "1-picking-fingering-chromatic/03-picking-fingering-chromatic.mp4",
+      "duration": 856,
+      "id": "section-1-lesson-2",
+      "sectionNumber": 1,
+      "sectionTitle": "피킹, 왼손 핑거링, 그리고 크로매틱 어떻게 해야할까?"
+    },
+    {
+      "number": 1,
+      "title": "1) 1번 손가락부터 시작하는 크로매틱을 마스터하자",
+      "file": "2-speed-chromatic-basics/01-speed-chromatic-basics.mp4",
+      "duration": 212,
+      "id": "section-2-lesson-1",
+      "sectionNumber": 2,
+      "sectionTitle": "속주를 위한 정석 크로매틱의 기본을 배워보자"
+    },
+    {
+      "number": 2,
+      "title": "2) 2번 손가락부터 시작하는 크로매틱을 마스터하자",
+      "file": "2-speed-chromatic-basics/02-speed-chromatic-basics.mp4",
+      "duration": 166,
+      "id": "section-2-lesson-2",
+      "sectionNumber": 2,
+      "sectionTitle": "속주를 위한 정석 크로매틱의 기본을 배워보자"
+    },
+    {
+      "number": 3,
+      "title": "3) 3번 손가락부터 시작하는 크로매틱을 마스터하자",
+      "file": "2-speed-chromatic-basics/03-speed-chromatic-basics.mp4",
+      "duration": 116,
+      "id": "section-2-lesson-3",
+      "sectionNumber": 2,
+      "sectionTitle": "속주를 위한 정석 크로매틱의 기본을 배워보자"
+    },
+    {
+      "number": 4,
+      "title": "4) 4번 손가락부터 시작하는 크로매틱을 마스터하자",
+      "file": "2-speed-chromatic-basics/04-speed-chromatic-basics.mp4",
+      "duration": 142,
+      "id": "section-2-lesson-4",
+      "sectionNumber": 2,
+      "sectionTitle": "속주를 위한 정석 크로매틱의 기본을 배워보자"
+    },
+    {
+      "number": 5,
+      "title": "5) 무조건 알고가야하는 3연음! 3연음을 익혀보자",
+      "file": "2-speed-chromatic-basics/05-speed-chromatic-basics.mp4",
+      "duration": 266,
+      "id": "section-2-lesson-5",
+      "sectionNumber": 2,
+      "sectionTitle": "속주를 위한 정석 크로매틱의 기본을 배워보자"
+    },
+    {
+      "number": 6,
+      "title": "6) 4연음과 3연음을 컨버팅하면서 연습해보자",
+      "file": "2-speed-chromatic-basics/06-speed-chromatic-basics.mp4",
+      "duration": 238,
+      "id": "section-2-lesson-6",
+      "sectionNumber": 2,
+      "sectionTitle": "속주를 위한 정석 크로매틱의 기본을 배워보자"
+    },
+    {
+      "number": 1,
+      "title": "1) 첫 번째 크로매틱 베리에이션, 4연음과 3연음을 컨버팅하면서 익혀보자",
+      "file": "3-chromatic-finger-independence/01-chromatic-finger-independence.mp4",
+      "duration": 605,
+      "id": "section-3-lesson-1",
+      "sectionNumber": 3,
+      "sectionTitle": "크로매틱 마스터하기 - 손가락 인디펜던스의 시작"
+    },
+    {
+      "number": 2,
+      "title": "2) 두 번째 크로매틱 베리에이션",
+      "file": "3-chromatic-finger-independence/02-chromatic-finger-independence.mp4",
+      "duration": 228,
+      "id": "section-3-lesson-2",
+      "sectionNumber": 3,
+      "sectionTitle": "크로매틱 마스터하기 - 손가락 인디펜던스의 시작"
+    },
+    {
+      "number": 3,
+      "title": "3) 세 번째 크로매틱 베리에이션 & 크로매틱 연습과 실전용 꿀팁",
+      "file": "3-chromatic-finger-independence/03-chromatic-finger-independence.mp4",
+      "duration": 449,
+      "id": "section-3-lesson-3",
+      "sectionNumber": 3,
+      "sectionTitle": "크로매틱 마스터하기 - 손가락 인디펜던스의 시작"
+    },
+    {
+      "number": 1,
+      "title": "1) 집 블록과 별장 블록? 그리고 어떻게 연습을 해야할까?",
+      "file": "4-c-major-scale-fundamentals/01-c-major-scale-fundamentals.mp4",
+      "duration": 561,
+      "id": "section-4-lesson-1",
+      "sectionNumber": 4,
+      "sectionTitle": "모든 KEY의 기본, C 메이저 스케일 완전정복"
+    },
+    {
+      "number": 2,
+      "title": "2) 지하실 블록, 옥상 계단 블록 (집 블록을 기준으로)",
+      "file": "4-c-major-scale-fundamentals/02-c-major-scale-fundamentals.mp4",
+      "duration": 201,
+      "id": "section-4-lesson-2",
+      "sectionNumber": 4,
+      "sectionTitle": "모든 KEY의 기본, C 메이저 스케일 완전정복"
+    },
+    {
+      "number": 3,
+      "title": "3) 별장 지하실 블록, 별장 옥상 블록 (별장 블록을 기준으로)",
+      "file": "4-c-major-scale-fundamentals/03-c-major-scale-fundamentals.mp4",
+      "duration": 238,
+      "id": "section-4-lesson-3",
+      "sectionNumber": 4,
+      "sectionTitle": "모든 KEY의 기본, C 메이저 스케일 완전정복"
+    },
+    {
+      "number": 4,
+      "title": "4) 집과 별장을 이어주는 고속도로 블록, 그리고 집과 별장의 확장 블록",
+      "file": "4-c-major-scale-fundamentals/04-c-major-scale-fundamentals.mp4",
+      "duration": 199,
+      "id": "section-4-lesson-4",
+      "sectionNumber": 4,
+      "sectionTitle": "모든 KEY의 기본, C 메이저 스케일 완전정복"
+    },
+    {
+      "number": 5,
+      "title": "5) 스케일 가지고 놀기 & 다른 키로 스케일을 외우는 꿀팁!",
+      "file": "4-c-major-scale-fundamentals/05-c-major-scale-fundamentals.mp4",
+      "duration": 903,
+      "id": "section-4-lesson-5",
+      "sectionNumber": 4,
+      "sectionTitle": "모든 KEY의 기본, C 메이저 스케일 완전정복"
+    },
+    {
+      "number": 1,
+      "title": "1) C 메이저 스케일에 크로매틱 베리에이션 적용시켜보기",
+      "file": "5-c-major-scale-variation/01-c-major-scale-variation.mp4",
+      "duration": 598,
+      "id": "section-5-lesson-1",
+      "sectionNumber": 5,
+      "sectionTitle": "C 메이저 스케일 활용 - 크로매틱에 적용해보자"
+    },
+    {
+      "number": 2,
+      "title": "2) C 메이저 스케일을 폴리 리듬으로 연습해보기",
+      "file": "5-c-major-scale-variation/02-c-major-scale-variation.mp4",
+      "duration": 505,
+      "id": "section-5-lesson-2",
+      "sectionNumber": 5,
+      "sectionTitle": "C 메이저 스케일 활용 - 크로매틱에 적용해보자"
+    },
+    {
+      "number": 3,
+      "title": "3) C 메이저 스케일을 2 스트링 콤비네이션으로 연습해보기",
+      "file": "5-c-major-scale-variation/03-c-major-scale-variation.mp4",
+      "duration": 256,
+      "id": "section-5-lesson-3",
+      "sectionNumber": 5,
+      "sectionTitle": "C 메이저 스케일 활용 - 크로매틱에 적용해보자"
+    },
+    {
+      "number": 4,
+      "title": "4) C 메이저 스케일을 패닝으로 연습해보기 & 실전 활용 방법 및 꿀팁!",
+      "file": "5-c-major-scale-variation/04-c-major-scale-variation.mp4",
+      "duration": 574,
+      "id": "section-5-lesson-4",
+      "sectionNumber": 5,
+      "sectionTitle": "C 메이저 스케일 활용 - 크로매틱에 적용해보자"
+    },
+    {
+      "number": 1,
+      "title": "1) 펜타토닉 스케일과 스케일 블록에 대해서 알아보자",
+      "file": "6-pentatonic-scale/01-pentatonic-scale.mp4",
+      "duration": 759,
+      "id": "section-6-lesson-1",
+      "sectionNumber": 6,
+      "sectionTitle": "펜타토닉 스케일 - 모든 연주의 시작과 끝"
+    },
+    {
+      "number": 2,
+      "title": "2) 왼손과 오른손을 컨펌 시키는 연습",
+      "file": "6-pentatonic-scale/02-pentatonic-scale.mp4",
+      "duration": 504,
+      "id": "section-6-lesson-2",
+      "sectionNumber": 6,
+      "sectionTitle": "펜타토닉 스케일 - 모든 연주의 시작과 끝"
+    },
+    {
+      "number": 3,
+      "title": "3) 펜타토닉의 시각에서 C 메이저 스케일을 바라보기",
+      "file": "6-pentatonic-scale/03-pentatonic-scale.mp4",
+      "duration": 383,
+      "id": "section-6-lesson-3",
+      "sectionNumber": 6,
+      "sectionTitle": "펜타토닉 스케일 - 모든 연주의 시작과 끝"
+    },
+    {
+      "number": 1,
+      "title": "1) 벤딩 포인트 첫 번째 공략 방법 - 7도",
+      "file": "7-bending-points/01-bending-points.mp4",
+      "duration": 628,
+      "id": "section-7-lesson-1",
+      "sectionNumber": 7,
+      "sectionTitle": "벤딩 포인트 마스터"
+    },
+    {
+      "number": 2,
+      "title": "2) 벤딩 포인트 두 번째 공략 방법 - 4도",
+      "file": "7-bending-points/02-bending-points.mp4",
+      "duration": 397,
+      "id": "section-7-lesson-2",
+      "sectionNumber": 7,
+      "sectionTitle": "벤딩 포인트 마스터"
+    },
+    {
+      "number": 3,
+      "title": "3) 벤딩 포인트 세 번째 공략 방법 - 6도",
+      "file": "7-bending-points/03-bending-points.mp4",
+      "duration": 324,
+      "id": "section-7-lesson-3",
+      "sectionNumber": 7,
+      "sectionTitle": "벤딩 포인트 마스터"
+    },
+    {
+      "number": 4,
+      "title": "4) 벤딩 포인트 네 번째 공략 방법 - 5, 2도",
+      "file": "7-bending-points/04-bending-points.mp4",
+      "duration": 724,
+      "id": "section-7-lesson-4",
+      "sectionNumber": 7,
+      "sectionTitle": "벤딩 포인트 마스터"
+    },
+    {
+      "number": 1,
+      "title": "1) 슬라이드 포인트에 대해서 알아보자",
+      "file": "8-slide-points/01-slide-points.mp4",
+      "duration": 757,
+      "id": "section-8-lesson-1",
+      "sectionNumber": 8,
+      "sectionTitle": "슬라이드 포인트 마스터"
+    },
+    {
+      "number": 1,
+      "title": "1) 필수 기본 테크닉! 해머링, 풀링 오프, 슬라이드에 대해 알아보자",
+      "file": "9-essential-techniques/01-essential-techniques.mp4",
+      "duration": 446,
+      "id": "section-9-lesson-1",
+      "sectionNumber": 9,
+      "sectionTitle": "필수 기본 테크닉 - 한 번 배운다고 다 아는 것이 아니다"
+    },
+    {
+      "number": 2,
+      "title": "2) 해머링 & 풀링 오프를 같이 쓰면서 익힐 수 있는 테크닉!",
+      "file": "9-essential-techniques/02-essential-techniques.mp4",
+      "duration": 558,
+      "id": "section-9-lesson-2",
+      "sectionNumber": 9,
+      "sectionTitle": "필수 기본 테크닉 - 한 번 배운다고 다 아는 것이 아니다"
+    },
+    {
+      "number": 3,
+      "title": "3) 슬라이드를 이용한 테크닉, 그리고 슬라이드 & 해머링을 이용한 테크닉!",
+      "file": "9-essential-techniques/03-essential-techniques.mp4",
+      "duration": 449,
+      "id": "section-9-lesson-3",
+      "sectionNumber": 9,
+      "sectionTitle": "필수 기본 테크닉 - 한 번 배운다고 다 아는 것이 아니다"
+    },
+    {
+      "number": 4,
+      "title": "4) 슬라이드 콤비네이션을 이용한 테크닉, 그리고 총정리",
+      "file": "9-essential-techniques/04-essential-techniques.mp4",
+      "duration": 761,
+      "id": "section-9-lesson-4",
+      "sectionNumber": 9,
+      "sectionTitle": "필수 기본 테크닉 - 한 번 배운다고 다 아는 것이 아니다"
+    },
+    {
+      "number": 1,
+      "title": "1) 1-4번? 롤링이 포인트가 되는 메인 릭, 그리고 메인 릭을 확장시켜보기",
+      "file": "10-easy-penta-40-licks/01-easy-penta-40-licks.mp4",
+      "duration": 906,
+      "id": "section-10-lesson-1",
+      "sectionNumber": 10,
+      "sectionTitle": "필수 펜타토닉 릭 40가지 (Easy Penta)"
+    },
+    {
+      "number": 2,
+      "title": "2) 5-6번? 풀링이 포인트가 되는 릭",
+      "file": "10-easy-penta-40-licks/02-easy-penta-40-licks.mp4",
+      "duration": 667,
+      "id": "section-10-lesson-2",
+      "sectionNumber": 10,
+      "sectionTitle": "필수 펜타토닉 릭 40가지 (Easy Penta)"
+    },
+    {
+      "number": 3,
+      "title": "3) 7-8번? 아웃사이드 피킹, 정박과 엇박의 차이를 느낄 수 있는 릭",
+      "file": "10-easy-penta-40-licks/03-easy-penta-40-licks.mp4",
+      "duration": 366,
+      "id": "section-10-lesson-3",
+      "sectionNumber": 10,
+      "sectionTitle": "필수 펜타토닉 릭 40가지 (Easy Penta)"
+    },
+    {
+      "number": 4,
+      "title": "4) 9-10번? 연속적으로 풀링이 나오는 상황에서의 릭",
+      "file": "10-easy-penta-40-licks/04-easy-penta-40-licks.mp4",
+      "duration": 409,
+      "id": "section-10-lesson-4",
+      "sectionNumber": 10,
+      "sectionTitle": "필수 펜타토닉 릭 40가지 (Easy Penta)"
+    },
+    {
+      "number": 5,
+      "title": "5) 11번? 슬라이드 포인트를 활용한 릭",
+      "file": "10-easy-penta-40-licks/05-easy-penta-40-licks.mp4",
+      "duration": 154,
+      "id": "section-10-lesson-5",
+      "sectionNumber": 10,
+      "sectionTitle": "필수 펜타토닉 릭 40가지 (Easy Penta)"
+    },
+    {
+      "number": 6,
+      "title": "6) 12번? 벤딩 비브라토를 활용한 릭",
+      "file": "10-easy-penta-40-licks/06-easy-penta-40-licks.mp4",
+      "duration": 345,
+      "id": "section-10-lesson-6",
+      "sectionNumber": 10,
+      "sectionTitle": "필수 펜타토닉 릭 40가지 (Easy Penta)"
+    },
+    {
+      "number": 7,
+      "title": "7) 13번? Rake 주법을 활용한 릭",
+      "file": "10-easy-penta-40-licks/07-easy-penta-40-licks.mp4",
+      "duration": 539,
+      "id": "section-10-lesson-7",
+      "sectionNumber": 10,
+      "sectionTitle": "필수 펜타토닉 릭 40가지 (Easy Penta)"
+    },
+    {
+      "number": 8,
+      "title": "8) 14번? 벤딩, 해머링 활용하고 필수 기본 테크닉을 변형한 릭",
+      "file": "10-easy-penta-40-licks/08-easy-penta-40-licks.mp4",
+      "duration": 228,
+      "id": "section-10-lesson-8",
+      "sectionNumber": 10,
+      "sectionTitle": "필수 펜타토닉 릭 40가지 (Easy Penta)"
+    },
+    {
+      "number": 9,
+      "title": "9) 15번? 벤딩 비브라토를 활용한 릭 (2)",
+      "file": "10-easy-penta-40-licks/09-easy-penta-40-licks.mp4",
+      "duration": 234,
+      "id": "section-10-lesson-9",
+      "sectionNumber": 10,
+      "sectionTitle": "필수 펜타토닉 릭 40가지 (Easy Penta)"
+    },
+    {
+      "number": 10,
+      "title": "10) 16번? 하이브리드 피킹의 기본을 다질 수 있는 릭",
+      "file": "10-easy-penta-40-licks/10-easy-penta-40-licks.mp4",
+      "duration": 635,
+      "id": "section-10-lesson-10",
+      "sectionNumber": 10,
+      "sectionTitle": "필수 펜타토닉 릭 40가지 (Easy Penta)"
+    },
+    {
+      "number": 11,
+      "title": "11) 17번? 홀딩과 그리드의 조합!",
+      "file": "10-easy-penta-40-licks/11-easy-penta-40-licks.mp4",
+      "duration": 391,
+      "id": "section-10-lesson-11",
+      "sectionNumber": 10,
+      "sectionTitle": "필수 펜타토닉 릭 40가지 (Easy Penta)"
+    },
+    {
+      "number": 12,
+      "title": "12) 18-20번? Down, Up, Up 피킹이 되는 상황에서의 릭",
+      "file": "10-easy-penta-40-licks/12-easy-penta-40-licks.mp4",
+      "duration": 661,
+      "id": "section-10-lesson-12",
+      "sectionNumber": 10,
+      "sectionTitle": "필수 펜타토닉 릭 40가지 (Easy Penta)"
+    },
+    {
+      "number": 13,
+      "title": "13) 21-23번? 스피드가 생명! 스피드가 붙으면 더 멋스러워지는 릭",
+      "file": "10-easy-penta-40-licks/13-easy-penta-40-licks.mp4",
+      "duration": 750,
+      "id": "section-10-lesson-13",
+      "sectionNumber": 10,
+      "sectionTitle": "필수 펜타토닉 릭 40가지 (Easy Penta)"
+    },
+    {
+      "number": 14,
+      "title": "14) 24번? 홈 블럭이 메인이 되는 릭",
+      "file": "10-easy-penta-40-licks/14-easy-penta-40-licks.mp4",
+      "duration": 443,
+      "id": "section-10-lesson-14",
+      "sectionNumber": 10,
+      "sectionTitle": "필수 펜타토닉 릭 40가지 (Easy Penta)"
+    },
+    {
+      "number": 15,
+      "title": "15) 25번? 반복되는 패턴을 활용한 릭",
+      "file": "10-easy-penta-40-licks/15-easy-penta-40-licks.mp4",
+      "duration": 294,
+      "id": "section-10-lesson-15",
+      "sectionNumber": 10,
+      "sectionTitle": "필수 펜타토닉 릭 40가지 (Easy Penta)"
+    },
+    {
+      "number": 16,
+      "title": "16) 26-27번? 펜타토닉에서 슬라이드를 활용하는 상황, 그리고 심화 버전",
+      "file": "10-easy-penta-40-licks/16-easy-penta-40-licks.mp4",
+      "duration": 496,
+      "id": "section-10-lesson-16",
+      "sectionNumber": 10,
+      "sectionTitle": "필수 펜타토닉 릭 40가지 (Easy Penta)"
+    },
+    {
+      "number": 17,
+      "title": "17) 28번? 폴리 리듬을 활용한 릭",
+      "file": "10-easy-penta-40-licks/17-easy-penta-40-licks.mp4",
+      "duration": 223,
+      "id": "section-10-lesson-17",
+      "sectionNumber": 10,
+      "sectionTitle": "필수 펜타토닉 릭 40가지 (Easy Penta)"
+    },
+    {
+      "number": 18,
+      "title": "18) 29번? 스트링 스키핑 - 하이브리드 피킹을 활용할 수 있는 릭",
+      "file": "10-easy-penta-40-licks/18-easy-penta-40-licks.mp4",
+      "duration": 272,
+      "id": "section-10-lesson-18",
+      "sectionNumber": 10,
+      "sectionTitle": "필수 펜타토닉 릭 40가지 (Easy Penta)"
+    },
+    {
+      "number": 19,
+      "title": "19) 30번? 펜타토닉에 슬라이드를 이용하여 색감을 입힐 수 있는 릭 & 스타카토 꿀팁!",
+      "file": "10-easy-penta-40-licks/19-easy-penta-40-licks.mp4",
+      "duration": 560,
+      "id": "section-10-lesson-19",
+      "sectionNumber": 10,
+      "sectionTitle": "필수 펜타토닉 릭 40가지 (Easy Penta)"
+    },
+    {
+      "number": 20,
+      "title": "20) 31번? 하프 벤딩, 그리고 하프 벤딩 비브라토가 나오는 상황",
+      "file": "10-easy-penta-40-licks/20-easy-penta-40-licks.mp4",
+      "duration": 228,
+      "id": "section-10-lesson-20",
+      "sectionNumber": 10,
+      "sectionTitle": "필수 펜타토닉 릭 40가지 (Easy Penta)"
+    },
+    {
+      "number": 21,
+      "title": "21) 32-35번? 계속 반복하면서 연주에 활용할 수 있는 릭",
+      "file": "10-easy-penta-40-licks/21-easy-penta-40-licks.mp4",
+      "duration": 1275,
+      "id": "section-10-lesson-21",
+      "sectionNumber": 10,
+      "sectionTitle": "필수 펜타토닉 릭 40가지 (Easy Penta)"
+    },
+    {
+      "number": 22,
+      "title": "22) 36-37번? 배웠던 릭들을 혼합해서 활용해보기",
+      "file": "10-easy-penta-40-licks/22-easy-penta-40-licks.mp4",
+      "duration": 663,
+      "id": "section-10-lesson-22",
+      "sectionNumber": 10,
+      "sectionTitle": "필수 펜타토닉 릭 40가지 (Easy Penta)"
+    },
+    {
+      "number": 23,
+      "title": "23) 38-39번? 하이브리드 피킹을 활용한 릭 (1), 그리고 리듬의 변화",
+      "file": "10-easy-penta-40-licks/23-easy-penta-40-licks.mp4",
+      "duration": 668,
+      "id": "section-10-lesson-23",
+      "sectionNumber": 10,
+      "sectionTitle": "필수 펜타토닉 릭 40가지 (Easy Penta)"
+    },
+    {
+      "number": 24,
+      "title": "24) 40번? 하이브리드 피킹을 활용한 릭 (2), 그리고 리듬의 변화",
+      "file": "10-easy-penta-40-licks/24-easy-penta-40-licks.mp4",
+      "duration": 615,
+      "id": "section-10-lesson-24",
+      "sectionNumber": 10,
+      "sectionTitle": "필수 펜타토닉 릭 40가지 (Easy Penta)"
+    },
+    {
+      "number": 1,
+      "title": "1) 피킹, 왼손 핑거링, 그리고 크로매틱 어떻게 해야할까? - 한 번에 몰아보기",
+      "file": "11-chapter-compilation/01-chapter-compilation.mp4",
+      "duration": 1408,
+      "id": "section-11-lesson-1",
+      "sectionNumber": 11,
+      "sectionTitle": "챕터 별로 한 번에 몰아보기"
+    },
+    {
+      "number": 2,
+      "title": "2) 속주를 위한 정석 크로매틱의 기본을 배워보자",
+      "file": "11-chapter-compilation/02-chapter-compilation.mp4",
+      "duration": 1141,
+      "id": "section-11-lesson-2",
+      "sectionNumber": 11,
+      "sectionTitle": "챕터 별로 한 번에 몰아보기"
+    },
+    {
+      "number": 3,
+      "title": "3) 크로매틱 마스터하기 - 손가락 인디펜던스의 시작",
+      "file": "11-chapter-compilation/03-chapter-compilation.mp4",
+      "duration": 1283,
+      "id": "section-11-lesson-3",
+      "sectionNumber": 11,
+      "sectionTitle": "챕터 별로 한 번에 몰아보기"
+    },
+    {
+      "number": 4,
+      "title": "4) 모든 KEY의 기본, C 메이저 스케일 완전정복",
+      "file": "11-chapter-compilation/04-chapter-compilation.mp4",
+      "duration": 2103,
+      "id": "section-11-lesson-4",
+      "sectionNumber": 11,
+      "sectionTitle": "챕터 별로 한 번에 몰아보기"
+    }
+  ]
+};

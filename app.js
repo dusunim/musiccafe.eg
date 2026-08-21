@@ -27,9 +27,12 @@ const toast = (message) => { const el=$('#toast'); el.textContent=message; el.cl
 
 async function loadManifest() {
   try {
-    const response = await fetch('content/manifest.json', { cache: 'no-store' });
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    const manifest = await response.json();
+    let manifest = window.COURSE_MANIFEST;
+    if (!manifest) {
+      const response = await fetch('content/manifest.json', { cache: 'no-store' });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      manifest = await response.json();
+    }
     lessons = manifest.lessons.map((item) => ({
       ...item,
       url: `content/videos/${item.file.split('/').map(encodeURIComponent).join('/')}`,
