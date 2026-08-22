@@ -16,14 +16,14 @@ const sections = [
   { number: 8, range: [29, 29], slug: 'slide-points', title: '슬라이드 포인트 마스터' },
   { number: 9, range: [30, 33], slug: 'essential-techniques', title: '필수 기본 테크닉 - 한 번 배운다고 다 아는 것이 아니다' },
   { number: 10, range: [34, 57], slug: 'easy-penta-40-licks', title: '필수 펜타토닉 릭 40가지 (Easy Penta)' },
-  { number: 11, range: [58, 61], slug: 'chapter-compilation', title: '챕터 별로 한 번에 몰아보기' },
+  { number: 11, range: [58, 73], slug: 'chapter-compilation', title: '챕터 별로 한 번에 몰아보기' },
 ];
 
 const entries = (await readdir(videoRoot, { withFileTypes: true }))
   .filter((entry) => entry.isFile() && entry.name.toLowerCase().endsWith('.mp4'));
 
-if (entries.length !== 61) {
-  throw new Error(`Expected 61 flat MP4 files, found ${entries.length}.`);
+if (entries.length !== 73) {
+  throw new Error(`Expected 73 flat MP4 files, found ${entries.length}.`);
 }
 
 const course = { title: '조필성 얼티밋 기타 마스터 클래스 1편', sections: [] };
@@ -66,4 +66,4 @@ for (const section of sections) {
 }
 
 await writeFile(courseFile, `${JSON.stringify(course, null, 2)}\n`, 'utf8');
-console.log(`Reorganized 61 videos into ${sections.length} sections.`);
+console.log(`Reorganized 73 videos into ${sections.length} sections.`);
