@@ -258,4 +258,4 @@ document.addEventListener('keydown',event=>{
   if(event.key.toLowerCase()==='f' && activeId) player.requestFullscreen?.();
 });
 
-loadManifest();
+window.authReady.then(loadManifest);

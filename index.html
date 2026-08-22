@@ -10,7 +10,22 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body class="locked">
+  <div class="auth-gate" id="authGate" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+    <form class="auth-card" id="authForm">
+      <div class="auth-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <p class="auth-eyebrow">PRIVATE CLASSROOM</p>
+      <h1 id="authTitle">강의실 잠금 해제</h1>
+      <p>계속하려면 암호를 입력해주세요.</p>
+      <label for="passwordInput">암호</label>
+      <div class="password-field">
+        <input id="passwordInput" type="password" autocomplete="current-password" required autofocus />
+        <button type="button" id="togglePassword" aria-label="암호 표시">보기</button>
+      </div>
+      <button class="unlock-button" type="submit">강의실 입장</button>
+      <p class="auth-error" id="authError" role="alert" aria-live="polite"></p>
+    </form>
+  </div>
   <main id="course">
     <section class="classroom">
       <div class="stage">
@@ -77,6 +92,7 @@
 
   <input id="fileInput" type="file" accept="video/*,.mkv" multiple hidden />
   <div class="toast" id="toast" role="status"></div>
+  <script src="auth.js"></script>
   <script src="content/manifest.js"></script>
   <script src="content/transcripts.js"></script>
   <script src="app.js"></script>
