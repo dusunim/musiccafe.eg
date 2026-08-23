@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="resources.css" />
 </head>
 <body class="locked">
   <div class="auth-gate" id="authGate" role="dialog" aria-modal="true" aria-labelledby="authTitle">
@@ -57,6 +58,7 @@
         <div class="tabs" id="notes">
           <button class="active" data-tab="about">강의 소개</button>
           <button data-tab="transcript">전체 스크립트</button>
+          <button data-tab="resources">강의 자료</button>
           <button data-tab="note">나의 노트</button>
           <button data-tab="shortcut">단축키</button>
         </div>
@@ -95,6 +97,7 @@
   <script src="auth.js"></script>
   <script src="content/manifest.js"></script>
   <script src="content/transcripts.js"></script>
+  <script src="content/resources.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

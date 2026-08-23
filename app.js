@@ -176,6 +176,50 @@ function renderActiveTab() {
   const activeTab = $('.tabs button.active')?.dataset.tab;
   if (activeTab === 'about') renderAbout();
   if (activeTab === 'transcript') renderTranscript();
+  if (activeTab === 'resources') renderResources();
+}
+
+const assetUrl = (path) => `content/assets/${path.split('/').map(encodeURIComponent).join('/')}`;
+const formatFileSize = (bytes) => {
+  if (!Number.isFinite(bytes)) return '';
+  return bytes >= 1024 ** 2 ? `${(bytes / 1024 ** 2).toFixed(1)} MB` : `${Math.ceil(bytes / 1024)} KB`;
+};
+
+function renderResources() {
+  const content = $('#tabContent');
+  const resources = window.COURSE_RESOURCES;
+  if (!resources) {
+    content.innerHTML = '<p>강의 자료를 준비하고 있습니다.</p>';
+    return;
+  }
+  content.innerHTML = `
+    <div class="course-resources">
+      <div class="resource-heading">
+        <div><span>COURSE MATERIALS</span><h3>강의 자료</h3></div>
+        <p>PDF 교재를 참고하고 backing track에 맞춰 연습해보세요.</p>
+      </div>
+      <section class="document-resource">
+        <div class="resource-icon" aria-hidden="true">PDF</div>
+        <div class="resource-copy">
+          <strong>${escapeHtml(resources.document.title)}</strong>
+          <span>${formatFileSize(resources.document.size)} · PDF 교재</span>
+        </div>
+        <div class="resource-actions">
+          <a href="${assetUrl(resources.document.file)}" target="_blank" rel="noopener">열어보기</a>
+          <a class="resource-download" href="${assetUrl(resources.document.file)}" download>다운로드 ↓</a>
+        </div>
+      </section>
+      <div class="backing-heading"><h3>Backing Tracks</h3><span>${resources.backingTracks.length}개 트랙</span></div>
+      <div class="backing-list">${resources.backingTracks.map((track, index) => `
+        <article class="backing-track">
+          <span class="track-number">${String(index + 1).padStart(2, '0')}</span>
+          <div class="track-body">
+            <div class="track-meta"><strong>${escapeHtml(track.title)}</strong><span>${formatFileSize(track.size)}</span></div>
+            <audio controls preload="none" src="${assetUrl(track.file)}"></audio>
+          </div>
+          <a href="${assetUrl(track.file)}" download aria-label="${escapeHtml(track.title)} 다운로드">↓</a>
+        </article>`).join('')}</div>
+    </div>`;
 }
 
 function renderTranscript() {
@@ -239,6 +283,7 @@ $('.tabs').addEventListener('click',event=>{
   const content=$('#tabContent');
   if(button.dataset.tab==='about') renderAbout();
   if(button.dataset.tab==='transcript') renderTranscript();
+  if(button.dataset.tab==='resources') renderResources();
   if(button.dataset.tab==='note') { content.innerHTML=`<textarea placeholder="이번 레슨에서 기억할 내용을 적어보세요.">${saved.note||''}</textarea>`; content.querySelector('textarea').addEventListener('input',e=>{saved.note=e.target.value;persist()}); }
   if(button.dataset.tab==='shortcut') content.innerHTML='<div class="shortcut-grid"><div><span>재생 / 일시정지</span><kbd>Space</kbd></div><div><span>10초 뒤로</span><kbd>←</kbd></div><div><span>10초 앞으로</span><kbd>→</kbd></div><div><span>전체 화면</span><kbd>F</kbd></div></div>';
 });
