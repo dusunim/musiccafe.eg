@@ -30,17 +30,14 @@
   <main id="course">
     <section class="classroom">
       <div class="stage">
-        <div class="video-shell" id="dropZone">
-          <video id="player" controls playsinline></video>
+        <div class="video-shell" id="videoShell">
+          <video id="player" controls controlslist="nodownload noremoteplayback" disablepictureinpicture playsinline></video>
           <div class="empty-state" id="emptyState">
             <div class="play-orbit"><span>▶</span></div>
             <p class="empty-kicker">YOUR PRIVATE CLASSROOM</p>
-            <h2>수업을 시작해볼까요?</h2>
-            <p>내 컴퓨터의 강의 영상을 선택하거나<br>이곳으로 파일을 끌어다 놓으세요.</p>
-            <button class="primary" id="pickHero">동영상 불러오기 <span>＋</span></button>
-            <small>MP4 · WebM · MOV · 여러 파일 선택 가능</small>
+            <h2>강의실을 준비하고 있어요</h2>
+            <p>잠시만 기다려주세요.</p>
           </div>
-          <div class="drop-overlay">여기에 놓아 강의에 추가</div>
         </div>
 
         <div class="lesson-info">
@@ -87,12 +84,10 @@
             <p>동영상을 추가하면 파일명 순서로<br>강의 목차가 만들어집니다.</p>
           </div>
         </div>
-        <button class="add-bottom" id="pickBottom">＋&nbsp; 동영상 추가</button>
       </aside>
     </section>
   </main>
 
-  <input id="fileInput" type="file" accept="video/*,.mkv" multiple hidden />
   <div class="toast" id="toast" role="status"></div>
   <script src="deploy-config.js"></script>
   <script src="auth.js"></script>

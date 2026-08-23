@@ -1,8 +1,7 @@
 const $ = (selector) => document.querySelector(selector);
 const player = $('#player');
-const input = $('#fileInput');
 const playlist = $('#playlist');
-const dropZone = $('#dropZone');
+const videoShell = $('#videoShell');
 const completeBtn = $('#completeBtn');
 const prevBtn = $('#prevBtn');
 const nextBtn = $('#nextBtn');
@@ -29,8 +28,6 @@ const formatTime = (seconds) => {
   return h ? `${h}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}` : `${m}:${String(s).padStart(2,'0')}`;
 };
 
-const cleanTitle = (name) => name.replace(/\.[^.]+$/, '').replace(/^\d+[._ -]*/, '').replace(/[_-]+/g, ' ').trim();
-const lessonKey = (file) => `${file.name}:${file.size}:${file.lastModified}`;
 const persist = () => localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
 const toast = (message) => { const el=$('#toast'); el.textContent=message; el.classList.add('show'); clearTimeout(toast.timer); toast.timer=setTimeout(()=>el.classList.remove('show'),2200); };
 
@@ -59,19 +56,6 @@ async function loadManifest() {
   }
 }
 
-function addFiles(fileList) {
-  const videos = [...fileList].filter(file => file.type.startsWith('video/') || /\.(mp4|webm|mov|m4v|mkv|ogv)$/i.test(file.name));
-  if (!videos.length) return toast('재생 가능한 동영상 파일을 선택해주세요.');
-  const known = new Set(lessons.map(item => item.id));
-  videos.sort((a,b)=>a.name.localeCompare(b.name, undefined, {numeric:true})).forEach(file => {
-    const id = lessonKey(file);
-    if (!known.has(id)) lessons.push({id, file, title:cleanTitle(file.name), url:URL.createObjectURL(file), duration:0});
-  });
-  render();
-  if (!activeId && lessons.length) selectLesson(lessons[0].id);
-  toast(`${videos.length}개 동영상을 불러왔습니다.`);
-}
-
 function selectLesson(id, shouldPlay = false) {
   const lesson = lessons.find(item => item.id === id);
   if (!lesson) return;
@@ -81,7 +65,7 @@ function selectLesson(id, shouldPlay = false) {
   activeId = id;
   if (lesson.sectionNumber) collapsedSections.delete(lesson.sectionNumber);
   player.src = lesson.url;
-  dropZone.classList.add('has-video');
+  videoShell.classList.add('has-video');
   $('#currentTitle').textContent = lesson.title;
   completeBtn.disabled = false;
   render();
@@ -275,8 +259,6 @@ function renderTranscript() {
     </div>`;
 }
 
-['#pickHero','#pickBottom'].forEach(id => $(id).addEventListener('click',()=>input.click()));
-input.addEventListener('change', event => { addFiles(event.target.files); input.value=''; });
 $('#expandAll').addEventListener('click', () => {
   collapsedSections.clear();
   render();
@@ -306,9 +288,7 @@ nextBtn.addEventListener('click', () => moveLesson(1));
 player.addEventListener('ended', completeAndContinue);
 player.addEventListener('timeupdate',()=>{ if(activeId && Math.floor(player.currentTime)%5===0){ saved[activeId]={...saved[activeId],time:player.currentTime}; persist(); } });
 
-['dragenter','dragover'].forEach(type=>dropZone.addEventListener(type,event=>{event.preventDefault();dropZone.classList.add('dragging')}));
-['dragleave','drop'].forEach(type=>dropZone.addEventListener(type,event=>{event.preventDefault();dropZone.classList.remove('dragging')}));
-dropZone.addEventListener('drop',event=>addFiles(event.dataTransfer.files));
+player.addEventListener('contextmenu', event => event.preventDefault());
 
 $('.tabs').addEventListener('click',event=>{
   const button=event.target.closest('button'); if(!button)return;
