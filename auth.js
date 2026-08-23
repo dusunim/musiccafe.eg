@@ -10,15 +10,15 @@ const togglePassword = document.querySelector('#togglePassword');
 
 let resolveAuth;
 window.authReady = new Promise((resolve) => { resolveAuth = resolve; });
-const mediaBaseUrl = (window.MUSIC_CAFE_CONFIG?.mediaBaseUrl || '').replace(/\/$/, '');
-const mediaTokenKey = `music-cafe-media-token:${mediaBaseUrl}`;
+const authMediaBaseUrl = (window.MUSIC_CAFE_CONFIG?.mediaBaseUrl || '').replace(/\/$/, '');
+const mediaTokenKey = `music-cafe-media-token:${authMediaBaseUrl}`;
 
-window.getMediaToken = () => mediaBaseUrl ? sessionStorage.getItem(mediaTokenKey) : '';
-window.getMediaBaseUrl = () => mediaBaseUrl;
+window.getMediaToken = () => authMediaBaseUrl ? sessionStorage.getItem(mediaTokenKey) : '';
+window.getMediaBaseUrl = () => authMediaBaseUrl;
 
 async function authenticateMedia(password) {
-  if (!mediaBaseUrl) return;
-  const response = await fetch(`${mediaBaseUrl}/api/login`, {
+  if (!authMediaBaseUrl) return;
+  const response = await fetch(`${authMediaBaseUrl}/api/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ password }),
@@ -43,7 +43,7 @@ async function sha256(value) {
   return [...new Uint8Array(digest)].map((byte) => byte.toString(16).padStart(2, '0')).join('');
 }
 
-if (sessionStorage.getItem('music-cafe-unlocked') === 'true' && (!mediaBaseUrl || window.getMediaToken())) {
+if (sessionStorage.getItem('music-cafe-unlocked') === 'true' && (!authMediaBaseUrl || window.getMediaToken())) {
   unlock();
 } else {
   requestAnimationFrame(() => passwordInput.focus());
