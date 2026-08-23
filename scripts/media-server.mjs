@@ -9,7 +9,7 @@ const authSource = readFileSync(resolve(projectRoot, 'auth.js'), 'utf8');
 const passwordHashes = new Set(authSource.match(/[a-f0-9]{64}/g) || []);
 const secretFile = resolve(projectRoot, '.media-server-secret');
 const port = Number(process.env.MUSIC_CAFE_MEDIA_PORT || 8787);
-const tokenLifetime = Number(process.env.MUSIC_CAFE_TOKEN_SECONDS || 86400);
+const tokenLifetime = Number(process.env.MUSIC_CAFE_TOKEN_SECONDS || 15552000);
 const allowedOrigins = new Set((process.env.MUSIC_CAFE_ALLOWED_ORIGINS ||
   'null,http://localhost:8000,http://127.0.0.1:8000,https://dusunim.github.io')
   .split(',').map((origin) => origin.trim()).filter(Boolean));

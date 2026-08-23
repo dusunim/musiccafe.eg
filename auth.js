@@ -11,9 +11,39 @@ const togglePassword = document.querySelector('#togglePassword');
 let resolveAuth;
 window.authReady = new Promise((resolve) => { resolveAuth = resolve; });
 const authMediaBaseUrl = (window.MUSIC_CAFE_CONFIG?.mediaBaseUrl || '').replace(/\/$/, '');
-const mediaTokenKey = `music-cafe-media-token:${authMediaBaseUrl}`;
+const mediaTokenKey = 'music-cafe-media-token';
+const unlockedKey = 'music-cafe-unlocked';
 
-window.getMediaToken = () => authMediaBaseUrl ? sessionStorage.getItem(mediaTokenKey) : '';
+function validStoredToken(token) {
+  if (!token) return false;
+  try {
+    const encoded = token.split('.')[0].replace(/-/g, '+').replace(/_/g, '/');
+    const payload = JSON.parse(atob(encoded.padEnd(Math.ceil(encoded.length / 4) * 4, '=')));
+    return payload.exp > Date.now();
+  } catch {
+    return false;
+  }
+}
+
+function migrateSessionToken() {
+  if (localStorage.getItem(mediaTokenKey)) return;
+  for (let index = 0; index < sessionStorage.length; index += 1) {
+    const key = sessionStorage.key(index);
+    if (!key?.startsWith('music-cafe-media-token:')) continue;
+    const token = sessionStorage.getItem(key);
+    if (validStoredToken(token)) localStorage.setItem(mediaTokenKey, token);
+  }
+}
+
+migrateSessionToken();
+window.getMediaToken = () => {
+  if (!authMediaBaseUrl) return '';
+  const token = localStorage.getItem(mediaTokenKey);
+  if (validStoredToken(token)) return token;
+  localStorage.removeItem(mediaTokenKey);
+  localStorage.removeItem(unlockedKey);
+  return '';
+};
 window.getMediaBaseUrl = () => authMediaBaseUrl;
 
 async function authenticateMedia(password) {
@@ -25,14 +55,14 @@ async function authenticateMedia(password) {
   });
   const result = await response.json().catch(() => ({}));
   if (!response.ok || !result.token) throw new Error(result.error || '미디어 서버 인증에 실패했습니다.');
-  sessionStorage.setItem(mediaTokenKey, result.token);
+  localStorage.setItem(mediaTokenKey, result.token);
 }
 
 function unlock() {
   document.body.classList.remove('locked');
   gate.classList.add('unlocked');
   gate.setAttribute('aria-hidden', 'true');
-  sessionStorage.setItem('music-cafe-unlocked', 'true');
+  localStorage.setItem(unlockedKey, 'true');
   resolveAuth();
   setTimeout(() => gate.remove(), 350);
 }
@@ -43,7 +73,7 @@ async function sha256(value) {
   return [...new Uint8Array(digest)].map((byte) => byte.toString(16).padStart(2, '0')).join('');
 }
 
-if (sessionStorage.getItem('music-cafe-unlocked') === 'true' && (!authMediaBaseUrl || window.getMediaToken())) {
+if ((localStorage.getItem(unlockedKey) === 'true' || sessionStorage.getItem(unlockedKey) === 'true') && (!authMediaBaseUrl || window.getMediaToken())) {
   unlock();
 } else {
   requestAnimationFrame(() => passwordInput.focus());

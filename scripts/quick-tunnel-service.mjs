@@ -34,7 +34,11 @@ function updateDeployment(tunnelUrl) {
 
   writeFileSync(configFile, next);
   run('/usr/bin/git', ['add', '--', 'deploy-config.js']);
-  run('/usr/bin/git', ['commit', '-m', 'Update Cloudflare Quick Tunnel URL']);
+  run('/usr/bin/git', [
+    '-c', 'user.name=Music Cafe Deploy',
+    '-c', 'user.email=music-cafe-deploy@users.noreply.github.com',
+    'commit', '-m', 'Update Cloudflare Quick Tunnel URL',
+  ]);
   run('/usr/bin/git', ['push', 'origin', `HEAD:${branch}`]);
   publishedUrl = tunnelUrl;
   console.log(`GitHub Pages media URL updated: ${tunnelUrl}`);
