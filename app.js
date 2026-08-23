@@ -7,6 +7,14 @@ const completeBtn = $('#completeBtn');
 const prevBtn = $('#prevBtn');
 const nextBtn = $('#nextBtn');
 const STORAGE_KEY = 'music-cafe-course-state';
+const mediaBaseUrl = window.getMediaBaseUrl?.() || '';
+
+const remoteUrl = (path, params = {}) => {
+  const url = new URL(path, `${mediaBaseUrl}/`);
+  url.searchParams.set('token', window.getMediaToken?.() || '');
+  Object.entries(params).forEach(([key, value]) => url.searchParams.set(key, value));
+  return url.href;
+};
 
 let lessons = [];
 let activeId = null;
@@ -37,7 +45,9 @@ async function loadManifest() {
     lessons = manifest.lessons.map((item) => ({
       ...item,
       transcript: window.COURSE_TRANSCRIPTS?.[item.id],
-      url: `content/videos/${item.file.split('/').map(encodeURIComponent).join('/')}`,
+      url: mediaBaseUrl
+        ? remoteUrl(`media/videos/${item.file.split('/').map(encodeURIComponent).join('/')}`)
+        : `content/videos/${item.file.split('/').map(encodeURIComponent).join('/')}`,
     }));
     collapsedSections = new Set(manifest.sections.map((section) => section.number));
     render();
@@ -76,6 +86,7 @@ function selectLesson(id, shouldPlay = false) {
   completeBtn.disabled = false;
   render();
   renderActiveTab();
+  loadRemoteTranscript(lesson);
   player.addEventListener('loadedmetadata', function restore() {
     lesson.duration = player.duration;
     const prior = saved[id]?.time || 0;
@@ -179,7 +190,9 @@ function renderActiveTab() {
   if (activeTab === 'resources') renderResources();
 }
 
-const assetUrl = (path) => `content/assets/${path.split('/').map(encodeURIComponent).join('/')}`;
+const assetUrl = (path, download = false) => mediaBaseUrl
+  ? remoteUrl(`media/assets/${path.split('/').map(encodeURIComponent).join('/')}`, download ? { download: '1' } : {})
+  : `content/assets/${path.split('/').map(encodeURIComponent).join('/')}`;
 const formatFileSize = (bytes) => {
   if (!Number.isFinite(bytes)) return '';
   return bytes >= 1024 ** 2 ? `${(bytes / 1024 ** 2).toFixed(1)} MB` : `${Math.ceil(bytes / 1024)} KB`;
@@ -206,7 +219,7 @@ function renderResources() {
         </div>
         <div class="resource-actions">
           <a href="${assetUrl(resources.document.file)}" target="_blank" rel="noopener">열어보기</a>
-          <a class="resource-download" href="${assetUrl(resources.document.file)}" download>다운로드 ↓</a>
+          <a class="resource-download" href="${assetUrl(resources.document.file, true)}" download>다운로드 ↓</a>
         </div>
       </section>
       <div class="backing-heading"><h3>Backing Tracks</h3><span>${resources.backingTracks.length}개 트랙</span></div>
@@ -217,14 +230,34 @@ function renderResources() {
             <div class="track-meta"><strong>${escapeHtml(track.title)}</strong><span>${formatFileSize(track.size)}</span></div>
             <audio controls preload="none" src="${assetUrl(track.file)}"></audio>
           </div>
-          <a href="${assetUrl(track.file)}" download aria-label="${escapeHtml(track.title)} 다운로드">↓</a>
+          <a href="${assetUrl(track.file, true)}" download aria-label="${escapeHtml(track.title)} 다운로드">↓</a>
         </article>`).join('')}</div>
     </div>`;
+}
+
+async function loadRemoteTranscript(lesson) {
+  if (!mediaBaseUrl || lesson.transcript || lesson.transcriptLoading) return;
+  lesson.transcriptLoading = true;
+  try {
+    const response = await fetch(remoteUrl('api/transcript', { file: lesson.file }), { cache: 'no-store' });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    lesson.transcript = (await response.json()).segments;
+  } catch (error) {
+    console.warn('전체 스크립트를 불러오지 못했습니다.', error);
+    lesson.transcriptError = true;
+  } finally {
+    lesson.transcriptLoading = false;
+    if (lesson.id === activeId && $('.tabs button.active')?.dataset.tab === 'transcript') renderTranscript();
+  }
 }
 
 function renderTranscript() {
   const lesson = lessons.find((item) => item.id === activeId);
   const content = $('#tabContent');
+  if (lesson?.transcriptLoading) {
+    content.innerHTML = '<p>전체 스크립트를 불러오는 중입니다.</p>';
+    return;
+  }
   if (!lesson?.transcript?.length) {
     content.innerHTML = '<p>이 강의의 전체 스크립트를 준비하고 있습니다.</p>';
     return;

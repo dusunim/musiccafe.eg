@@ -10,6 +10,23 @@ const togglePassword = document.querySelector('#togglePassword');
 
 let resolveAuth;
 window.authReady = new Promise((resolve) => { resolveAuth = resolve; });
+const mediaBaseUrl = (window.MUSIC_CAFE_CONFIG?.mediaBaseUrl || '').replace(/\/$/, '');
+const mediaTokenKey = `music-cafe-media-token:${mediaBaseUrl}`;
+
+window.getMediaToken = () => mediaBaseUrl ? sessionStorage.getItem(mediaTokenKey) : '';
+window.getMediaBaseUrl = () => mediaBaseUrl;
+
+async function authenticateMedia(password) {
+  if (!mediaBaseUrl) return;
+  const response = await fetch(`${mediaBaseUrl}/api/login`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ password }),
+  });
+  const result = await response.json().catch(() => ({}));
+  if (!response.ok || !result.token) throw new Error(result.error || '미디어 서버 인증에 실패했습니다.');
+  sessionStorage.setItem(mediaTokenKey, result.token);
+}
 
 function unlock() {
   document.body.classList.remove('locked');
@@ -26,7 +43,7 @@ async function sha256(value) {
   return [...new Uint8Array(digest)].map((byte) => byte.toString(16).padStart(2, '0')).join('');
 }
 
-if (sessionStorage.getItem('music-cafe-unlocked') === 'true') {
+if (sessionStorage.getItem('music-cafe-unlocked') === 'true' && (!mediaBaseUrl || window.getMediaToken())) {
   unlock();
 } else {
   requestAnimationFrame(() => passwordInput.focus());
@@ -39,13 +56,14 @@ form.addEventListener('submit', async (event) => {
   errorMessage.textContent = '';
   try {
     if (PASSWORD_HASHES.has(await sha256(passwordInput.value))) {
+      await authenticateMedia(passwordInput.value);
       unlock();
       return;
     }
     errorMessage.textContent = '암호가 올바르지 않습니다.';
     passwordInput.select();
-  } catch {
-    errorMessage.textContent = '이 브라우저에서는 암호 확인을 사용할 수 없습니다.';
+  } catch (error) {
+    errorMessage.textContent = error.message || '이 브라우저에서는 암호 확인을 사용할 수 없습니다.';
   } finally {
     submitButton.disabled = false;
   }

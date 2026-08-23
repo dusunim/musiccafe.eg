@@ -34,3 +34,6 @@ content/transcripts.js
 *.temp.ts
 __pycache__/
 *.pyc
+
+# Local media server credentials
+.media-server-secret
