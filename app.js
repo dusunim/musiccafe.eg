@@ -48,7 +48,7 @@ function mergeTranscriptSegments(segments = []) {
     const combinedDuration = next.end - current.start;
     const combinedText = `${current.text} ${next.text.trim()}`;
     const shouldMerge = sourceDuration <= 10
-      && gap <= 1.5
+      && gap <= 2
       && !endsSentence(source.text)
       && combinedDuration <= 24
       && combinedText.length <= 200;
