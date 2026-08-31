@@ -172,6 +172,7 @@ function renderActiveTab() {
   if (activeTab === 'about') renderAbout();
   if (activeTab === 'transcript') renderTranscript();
   if (activeTab === 'resources') renderResources();
+  if (activeTab === 'note') renderNote();
 }
 
 const assetUrl = (path, download = false) => mediaBaseUrl
@@ -259,6 +260,22 @@ function renderTranscript() {
     </div>`;
 }
 
+function renderNote() {
+  const lesson = lessons.find((item) => item.id === activeId);
+  const content = $('#tabContent');
+  const image = lesson?.sectionNumber === 1
+    ? `<figure class="lesson-note-image">
+        <img src="${assetUrl('notes/day1-note1.jpeg')}" alt="Section 1 피킹과 핑거링 필기 노트" />
+        <figcaption>Day 1 · 피킹, 왼손 핑거링, 크로매틱 필기</figcaption>
+      </figure>`
+    : '';
+  content.innerHTML = `${image}<textarea placeholder="이번 레슨에서 기억할 내용을 적어보세요.">${escapeHtml(saved.note || '')}</textarea>`;
+  content.querySelector('textarea').addEventListener('input', (event) => {
+    saved.note = event.target.value;
+    persist();
+  });
+}
+
 $('#expandAll').addEventListener('click', () => {
   collapsedSections.clear();
   render();
@@ -297,7 +314,7 @@ $('.tabs').addEventListener('click',event=>{
   if(button.dataset.tab==='about') renderAbout();
   if(button.dataset.tab==='transcript') renderTranscript();
   if(button.dataset.tab==='resources') renderResources();
-  if(button.dataset.tab==='note') { content.innerHTML=`<textarea placeholder="이번 레슨에서 기억할 내용을 적어보세요.">${saved.note||''}</textarea>`; content.querySelector('textarea').addEventListener('input',e=>{saved.note=e.target.value;persist()}); }
+  if(button.dataset.tab==='note') renderNote();
   if(button.dataset.tab==='shortcut') content.innerHTML='<div class="shortcut-grid"><div><span>재생 / 일시정지</span><kbd>Space</kbd></div><div><span>10초 뒤로</span><kbd>←</kbd></div><div><span>10초 앞으로</span><kbd>→</kbd></div><div><span>전체 화면</span><kbd>F</kbd></div></div>';
 });
 

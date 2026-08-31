@@ -2,6 +2,7 @@
 content/videos/
 content/transcripts/
 content/transcripts.js
+content/assets/notes/
 
 # Video files
 *.mp4
