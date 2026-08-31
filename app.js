@@ -28,6 +28,40 @@ const formatTime = (seconds) => {
   return h ? `${h}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}` : `${m}:${String(s).padStart(2,'0')}`;
 };
 
+const endsSentence = (text) => {
+  const value = text.trim();
+  if (!value) return true;
+  if (/[.!?…。？！]["'”’)]?$/.test(value)) return true;
+  if (/^(네|예|아니요|맞아요|좋습니다|감사합니다)[,.]?$/.test(value)) return true;
+  return /(?:습니다|습니까|입니다|입니까|됩니다|됩니까|합니다|합니까|겠습니다|바랍니다|보겠습니다|드리겠습니다|이에요|예요|거예요|거죠|겠죠|네요|군요|잖아요|거든요|는데요|나요|까요|어요|아요|해요|돼요|되죠|죠|요|다|까)["'”’)]?$/.test(value);
+};
+
+function mergeTranscriptSegments(segments = []) {
+  if (!segments.length) return [];
+  const merged = [{ ...segments[0], text: segments[0].text.trim() }];
+  for (let index = 1; index < segments.length; index += 1) {
+    const source = segments[index - 1];
+    const next = segments[index];
+    const current = merged[merged.length - 1];
+    const sourceDuration = source.end - source.start;
+    const gap = next.start - source.end;
+    const combinedDuration = next.end - current.start;
+    const combinedText = `${current.text} ${next.text.trim()}`;
+    const shouldMerge = sourceDuration <= 10
+      && gap <= 0.8
+      && !endsSentence(source.text)
+      && combinedDuration <= 24
+      && combinedText.length <= 200;
+    if (shouldMerge) {
+      current.end = next.end;
+      current.text = combinedText;
+    } else {
+      merged.push({ ...next, text: next.text.trim() });
+    }
+  }
+  return merged;
+}
+
 const persist = () => localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
 const toast = (message) => { const el=$('#toast'); el.textContent=message; el.classList.add('show'); clearTimeout(toast.timer); toast.timer=setTimeout(()=>el.classList.remove('show'),2200); };
 
@@ -41,7 +75,7 @@ async function loadManifest() {
     }
     lessons = manifest.lessons.map((item) => ({
       ...item,
-      transcript: window.COURSE_TRANSCRIPTS?.[item.id],
+      transcript: mergeTranscriptSegments(window.COURSE_TRANSCRIPTS?.[item.id]),
       url: mediaBaseUrl
         ? remoteUrl(`media/videos/${item.file.split('/').map(encodeURIComponent).join('/')}`)
         : `content/videos/${item.file.split('/').map(encodeURIComponent).join('/')}`,
@@ -226,7 +260,7 @@ async function loadRemoteTranscript(lesson) {
   try {
     const response = await fetch(remoteUrl('api/transcript', { file: lesson.file }), { cache: 'no-store' });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    lesson.transcript = (await response.json()).segments;
+    lesson.transcript = mergeTranscriptSegments((await response.json()).segments);
   } catch (error) {
     console.warn('전체 스크립트를 불러오지 못했습니다.', error);
     lesson.transcriptError = true;
