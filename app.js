@@ -263,10 +263,25 @@ function renderTranscript() {
 function renderNote() {
   const lesson = lessons.find((item) => item.id === activeId);
   const content = $('#tabContent');
-  const image = lesson?.sectionNumber === 1
+  let noteImage = null;
+  if (lesson?.sectionNumber === 1) {
+    noteImage = {
+      file: 'notes/day1-note1.jpeg',
+      alt: 'Section 1 피킹과 핑거링 필기 노트',
+      caption: 'Day 1 · 피킹, 왼손 핑거링, 크로매틱 필기',
+    };
+  }
+  if (lesson?.sectionNumber === 2 && lesson.number >= 1 && lesson.number <= 4) {
+    noteImage = {
+      file: 'notes/day1-note2.jpeg',
+      alt: 'Section 2 크로매틱 필기 노트',
+      caption: 'Day 1 · 크로매틱의 정석 필기',
+    };
+  }
+  const image = noteImage
     ? `<figure class="lesson-note-image">
-        <img src="${assetUrl('notes/day1-note1.jpeg')}" alt="Section 1 피킹과 핑거링 필기 노트" />
-        <figcaption>Day 1 · 피킹, 왼손 핑거링, 크로매틱 필기</figcaption>
+        <img src="${assetUrl(noteImage.file)}" alt="${escapeHtml(noteImage.alt)}" />
+        <figcaption>${escapeHtml(noteImage.caption)}</figcaption>
       </figure>`
     : '';
   content.innerHTML = `${image}<textarea placeholder="이번 레슨에서 기억할 내용을 적어보세요.">${escapeHtml(saved.note || '')}</textarea>`;
