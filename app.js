@@ -75,7 +75,9 @@ async function loadManifest() {
     }
     lessons = manifest.lessons.map((item) => ({
       ...item,
-      transcript: mergeTranscriptSegments(window.COURSE_TRANSCRIPTS?.[item.id]),
+      transcript: window.COURSE_TRANSCRIPTS?.[item.id]
+        ? mergeTranscriptSegments(window.COURSE_TRANSCRIPTS[item.id])
+        : undefined,
       url: mediaBaseUrl
         ? remoteUrl(`media/videos/${item.file.split('/').map(encodeURIComponent).join('/')}`)
         : `content/videos/${item.file.split('/').map(encodeURIComponent).join('/')}`,
