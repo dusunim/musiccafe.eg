@@ -22,6 +22,7 @@ const loginAttempts = new Map();
 const mimeTypes = {
   '.mp4': 'video/mp4', '.m4v': 'video/x-m4v', '.webm': 'video/webm',
   '.wav': 'audio/wav', '.mp3': 'audio/mpeg', '.m4a': 'audio/mp4',
+  '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png', '.webp': 'image/webp',
   '.pdf': 'application/pdf', '.json': 'application/json; charset=utf-8',
 };
 
