@@ -302,28 +302,33 @@ function renderTranscript() {
 function renderNote() {
   const lesson = lessons.find((item) => item.id === activeId);
   const content = $('#tabContent');
-  let noteImage = null;
+  let noteImages = [];
   if (lesson?.sectionNumber === 1) {
-    noteImage = {
+    noteImages = [{
       file: 'notes/day1-note1.jpeg',
       alt: 'Section 1 피킹과 핑거링 필기 노트',
       caption: 'Day 1 · 피킹, 왼손 핑거링, 크로매틱 필기',
-    };
+    }];
   }
   if (lesson?.sectionNumber === 2 && lesson.number >= 1 && lesson.number <= 4) {
-    noteImage = {
+    noteImages = [{
       file: 'notes/day1-note2.jpeg',
       alt: 'Section 2 크로매틱 필기 노트',
       caption: 'Day 1 · 크로매틱의 정석 필기',
-    };
+    }];
   }
-  const image = noteImage
-    ? `<figure class="lesson-note-image">
-        <img src="${assetUrl(noteImage.file)}" alt="${escapeHtml(noteImage.alt)}" />
-        <figcaption>${escapeHtml(noteImage.caption)}</figcaption>
-      </figure>`
-    : '';
-  content.innerHTML = `${image}<textarea placeholder="이번 레슨에서 기억할 내용을 적어보세요.">${escapeHtml(saved.note || '')}</textarea>`;
+  if (lesson?.id === 'section-4-lesson-1') {
+    noteImages = [
+      { file: 'notes/day3-home-block.jpeg', alt: '기타 지판의 집 블록 음계', caption: '집 블록' },
+      { file: 'notes/day3-villa-block.jpeg', alt: '기타 지판의 별장 블록 음계', caption: '별장 블록' },
+    ];
+  }
+  const images = noteImages.map((noteImage) => `
+    <figure class="lesson-note-image">
+      <img src="${assetUrl(noteImage.file)}" alt="${escapeHtml(noteImage.alt)}" />
+      <figcaption>${escapeHtml(noteImage.caption)}</figcaption>
+    </figure>`).join('');
+  content.innerHTML = `${images}<textarea placeholder="이번 레슨에서 기억할 내용을 적어보세요.">${escapeHtml(saved.note || '')}</textarea>`;
   content.querySelector('textarea').addEventListener('input', (event) => {
     saved.note = event.target.value;
     persist();
