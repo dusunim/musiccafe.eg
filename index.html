@@ -94,6 +94,6 @@
   <script src="content/manifest.js"></script>
   <script src="content/transcripts.js"></script>
   <script src="content/resources.js"></script>
-  <script src="app.js"></script>
+  <script>document.write(`<script src="app.js?v=${Date.now()}"><\/script>`);</script>
 </body>
 </html>
