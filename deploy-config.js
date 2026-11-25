@@ -1,4 +1,4 @@
 window.MUSIC_CAFE_CONFIG = {
   // Leave blank for file:// playback. A Cloudflare Tunnel URL can be set here.
-  mediaBaseUrl: 'https://com-stop-judges-dental.trycloudflare.com',
+  mediaBaseUrl: 'https://struggle-caps-alice-action.trycloudflare.com',
 };
